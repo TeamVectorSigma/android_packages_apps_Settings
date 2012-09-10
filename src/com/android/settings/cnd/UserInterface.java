@@ -24,7 +24,9 @@ import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
+import android.preference.ListPreference;
 import android.preference.Preference;
+import android.preference.PreferenceGroup;
 import android.preference.PreferenceScreen;
 import android.provider.MediaStore;
 import android.provider.Settings;
@@ -46,20 +48,29 @@ import com.android.settings.R;
 import com.android.settings.util.CMDProcessor;
 import com.android.settings.util.Helpers;
 
-public class UserInterface extends SettingsPreferenceFragment {
+public class UserInterface extends SettingsPreferenceFragment implements Preference.OnPreferenceChangeListener {
 
     public static final String TAG = "UserInterface";
 
     private static final String PREF_CUSTOM_CARRIER_LABEL = "custom_carrier_label";
+    private static final String KEY_IME_SWITCHER = "status_bar_ime_switcher";
+    private static final String PREF_RECENT_KILL_ALL = "recent_kill_all";
+    private static final String VOLUME_KEY_CURSOR_CONTROL = "volume_key_cursor_control";
+    private static final String PREF_KILL_APP_LONGPRESS_BACK = "kill_app_longpress_back";
+    private static final String PREF_ALARM_ENABLE = "alarm";
 
     Preference mCustomLabel;
+    CheckBoxPreference mStatusBarImeSwitcher;
+    CheckBoxPreference mRecentKillAll;
+    ListPreference mVolumeKeyCursorControl;
+    CheckBoxPreference mKillAppLongpressBack;
+    CheckBoxPreference mAlarm;
 
     String mCustomLabelText = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle(R.string.title_ui);
         // Load the preferences from an XML resource
         addPreferencesFromResource(R.xml.user_interface_settings);
 
@@ -67,6 +78,46 @@ public class UserInterface extends SettingsPreferenceFragment {
 
         mCustomLabel = findPreference(PREF_CUSTOM_CARRIER_LABEL);
         updateCustomLabelTextSummary();
+
+        mStatusBarImeSwitcher = (CheckBoxPreference) findPreference(KEY_IME_SWITCHER);
+        if (mStatusBarImeSwitcher != null) {
+            mStatusBarImeSwitcher.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
+                    Settings.System.STATUS_BAR_IME_SWITCHER, 0) != 0);
+        }
+
+        mRecentKillAll = (CheckBoxPreference) findPreference(PREF_RECENT_KILL_ALL);
+        mRecentKillAll.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.RECENT_KILL_ALL_BUTTON, 0) == 1);
+
+        mVolumeKeyCursorControl = (ListPreference) findPreference(VOLUME_KEY_CURSOR_CONTROL);
+        mVolumeKeyCursorControl.setOnPreferenceChangeListener(this);
+        mVolumeKeyCursorControl.setValue(Integer.toString(Settings.System.getInt(getActivity()
+                .getContentResolver(), Settings.System.VOLUME_KEY_CURSOR_CONTROL, 0)));
+        mVolumeKeyCursorControl.setSummary(mVolumeKeyCursorControl.getEntry());
+
+        mKillAppLongpressBack = (CheckBoxPreference) findPreference(PREF_KILL_APP_LONGPRESS_BACK);
+                updateKillAppLongpressBackOptions();
+        
+        mAlarm = (CheckBoxPreference) findPreference(PREF_ALARM_ENABLE);
+        mAlarm.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
+                    Settings.System.STATUSBAR_SHOW_ALARM, 1) == 1);
+
+        boolean hasNavBarByDefault = mContext.getResources().getBoolean(
+                com.android.internal.R.bool.config_showNavigationBar);
+
+        if (hasNavBarByDefault || mTablet) {
+            ((PreferenceGroup) findPreference("misc")).removePreference(mKillAppLongpressBack);
+        }
+    }
+
+    private void writeKillAppLongpressBackOptions() {
+        Settings.System.putInt(getActivity().getContentResolver(),
+                Settings.System.KILL_APP_LONGPRESS_BACK, mKillAppLongpressBack.isChecked() ? 1 : 0);
+    }
+    
+    private void updateKillAppLongpressBackOptions() {
+        mKillAppLongpressBack.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.KILL_APP_LONGPRESS_BACK, 0) != 0);
     }
 
     private void updateCustomLabelTextSummary() {
@@ -82,7 +133,23 @@ public class UserInterface extends SettingsPreferenceFragment {
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen,
             Preference preference) {
-        if (preference == mCustomLabel) {
+        if (preference == mStatusBarImeSwitcher) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.STATUS_BAR_IME_SWITCHER, mStatusBarImeSwitcher.isChecked() ? 1 : 0);
+            return true;
+        } else if (preference == mRecentKillAll) {
+            boolean checked = ((CheckBoxPreference) preference).isChecked();
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.RECENT_KILL_ALL_BUTTON, checked ? 1 : 0);
+            Helpers.restartSystemUI();
+            return true;
+        } else if (preference == mKillAppLongpressBack) {
+            writeKillAppLongpressBackOptions();
+        } else if (preference == mAlarm) {
+            boolean checked = ((CheckBoxPreference) preference).isChecked();
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.STATUSBAR_SHOW_ALARM, checked ? 1 : 0);
+        } else if (preference == mCustomLabel) {
             AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
 
             alert.setTitle(R.string.custom_carrier_label_title);
@@ -113,5 +180,19 @@ public class UserInterface extends SettingsPreferenceFragment {
             alert.show();
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
+    }
+
+    @Override
+    public boolean onPreferenceChange(Preference preference, Object value) {
+        if (preference == mVolumeKeyCursorControl) {
+            String volumeKeyCursorControl = (String) value;
+            int val = Integer.parseInt(volumeKeyCursorControl);
+            Settings.System.putInt(getActivity().getContentResolver(),
+                                   Settings.System.VOLUME_KEY_CURSOR_CONTROL, val);
+            int index = mVolumeKeyCursorControl.findIndexOfValue(volumeKeyCursorControl);
+            mVolumeKeyCursorControl.setSummary(mVolumeKeyCursorControl.getEntries()[index]);
+            return true;
+        }
+        return false;
     }
 }

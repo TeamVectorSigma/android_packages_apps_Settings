@@ -16,19 +16,22 @@
 
 package com.android.settings.cnd;
 
-import android.app.ActivityManagerNative;
+import android.app.AlertDialog;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
+import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
 import android.util.Log;
@@ -36,6 +39,8 @@ import android.view.IWindowManager;
 import android.view.VolumePanel;
 
 import com.android.settings.R;
+import com.android.settings.service.FlipService;
+import com.android.settings.service.HeadphoneService;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.Utils;
 
@@ -46,14 +51,27 @@ public class SoundSettings extends SettingsPreferenceFragment implements
     private static final String KEY_VOLUME_OVERLAY = "volume_overlay";
     private static final String KEY_SAFE_HEADSET_RESTORE = "safe_headset_restore";
     private static final String KEY_VOLBTN_MUSIC_CTRL = "volbtn_music_controls";
-
-    private String[] volumeSubNames;
+    private static final String KEY_VOLUME_ADJUST_SOUNDS = "volume_adjust_sounds";
+    private static final String PREF_HEADPHONES_PLUGGED_ACTION = "headphone_audio_mode";
+    private static final String PREF_BT_CONNECTED_ACTION = "bt_audio_mode";
+    private static final String PREF_FLIP_ACTION = "flip_mode";
+    private static final String PREF_USER_TIMEOUT = "user_timeout";
+    private static final String PREF_USER_DOWN_MS = "user_down_ms";
+    private static final String PREF_PHONE_RING_SILENCE = "phone_ring_silence";
 
     private final Configuration mCurConfig = new Configuration();
 
+    private SharedPreferences prefs;
     private ListPreference mVolumeOverlay;
     private CheckBoxPreference mSafeHeadsetRestore;
     private CheckBoxPreference mVolBtnMusicCtrl;
+    private CheckBoxPreference mVolumeAdjustSounds;
+    private ListPreference mHeadphonesPluggedAction;
+    private ListPreference mBTPluggedAction;
+    private ListPreference mFlipAction;
+    private ListPreference mUserDownMS;
+    private ListPreference mFlipScreenOff;
+    private ListPreference mPhoneSilent;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,9 +79,16 @@ public class SoundSettings extends SettingsPreferenceFragment implements
         ContentResolver resolver = getContentResolver();
 
         addPreferencesFromResource(R.xml.sound_settings_rom);
+        PreferenceManager.setDefaultValues(mContext, R.xml.sound_settings_rom, true);
+        prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
 
         mVolumeOverlay = (ListPreference) findPreference(KEY_VOLUME_OVERLAY);
         mVolumeOverlay.setOnPreferenceChangeListener(this);
+        int volumeOverlay = Settings.System.getInt(getContentResolver(),
+                Settings.System.MODE_VOLUME_OVERLAY,
+                VolumePanel.VOLUME_OVERLAY_SINGLE);
+        mVolumeOverlay.setValue(Integer.toString(volumeOverlay));
+        mVolumeOverlay.setSummary(mVolumeOverlay.getEntry());
 
         mSafeHeadsetRestore = (CheckBoxPreference) findPreference(KEY_SAFE_HEADSET_RESTORE);
         mSafeHeadsetRestore.setPersistent(false);
@@ -74,8 +99,30 @@ public class SoundSettings extends SettingsPreferenceFragment implements
         mVolBtnMusicCtrl.setChecked(Settings.System.getInt(resolver,
                 Settings.System.VOLBTN_MUSIC_CONTROLS, 1) != 0);
 
-        volumeSubNames = getResources().getStringArray(R.array.volume_overlay_entries);
+        mVolumeAdjustSounds = (CheckBoxPreference) findPreference(KEY_VOLUME_ADJUST_SOUNDS);
+        mVolumeAdjustSounds.setPersistent(false);
+        mVolumeAdjustSounds.setChecked(Settings.System.getInt(resolver,
+                Settings.System.VOLUME_ADJUST_SOUNDS_ENABLED, 1) != 0);
 
+        mFlipAction = (ListPreference) findPreference(PREF_FLIP_ACTION);
+        mFlipAction.setOnPreferenceChangeListener(this);
+        mFlipAction.setValue((prefs.getString(PREF_FLIP_ACTION, "-1")));
+        
+        mUserDownMS = (ListPreference) findPreference(PREF_USER_DOWN_MS);
+        mUserDownMS.setEnabled(Integer.parseInt(prefs.getString(PREF_FLIP_ACTION, "-1")) != -1);
+        
+        mFlipScreenOff = (ListPreference) findPreference(PREF_USER_TIMEOUT);
+        mFlipScreenOff.setEnabled(Integer.parseInt(prefs.getString(PREF_FLIP_ACTION, "-1")) != -1);
+        
+        mPhoneSilent = (ListPreference) findPreference(PREF_PHONE_RING_SILENCE);
+        mPhoneSilent.setValue((prefs.getString(PREF_PHONE_RING_SILENCE, "0")));
+        mPhoneSilent.setOnPreferenceChangeListener(this);
+        
+        if (HeadphoneService.DEBUG)
+            mContext.startService(new Intent(mContext, HeadphoneService.class));
+        
+        if (FlipService.DEBUG)
+            mContext.startService(new Intent(mContext, FlipService.class));
     }
     
     @Override
@@ -88,65 +135,10 @@ public class SoundSettings extends SettingsPreferenceFragment implements
         super.onPause();
     }
 
-    private void setVolumeOverlaySettingValue(String value) {
-        // Persist
-        int toPersist = -1;
-        if (value != null) {
-            if (value.equals("single")) {
-                toPersist = Settings.System.VOLUME_OVERLAY_SINGLE;
-            } else if (value.equals("expandable")) {
-                toPersist = Settings.System.VOLUME_OVERLAY_EXPANDABLE;
-            } else if (value.equals("expanded")) {
-                toPersist = Settings.System.VOLUME_OVERLAY_EXPANDED;
-            } else if (value.equals("none")) {
-                toPersist = Settings.System.VOLUME_OVERLAY_NONE;
-            }
-        }
-        if (toPersist != -1) {
-            Settings.System.putInt(getContentResolver(), Settings.System.MODE_VOLUME_OVERLAY, toPersist);
-            if (toPersist < volumeSubNames.length && volumeSubNames[toPersist] != null) {
-                mVolumeOverlay.setSummary(volumeSubNames[toPersist]);
-            }
-            // Fire Intent so that the panel can update
-            Intent i = new Intent();
-            i.setAction(VolumePanel.ACTION_VOLUME_OVERLAY_CHANGED);
-            i.putExtra("state", toPersist);
-            ActivityManagerNative.broadcastStickyIntent(i, null);
-        }
-    }
-            
-    private String getVolumeOverlaySettingValue() {
-        // Load from Settings
-        int settingAsInt = Settings.System.getInt(getContentResolver(),Settings.System.MODE_VOLUME_OVERLAY, Settings.System.VOLUME_OVERLAY_SINGLE);
-        if (settingAsInt != -1 && settingAsInt < volumeSubNames.length && volumeSubNames[settingAsInt] != null) {
-            mVolumeOverlay.setSummary(volumeSubNames[settingAsInt]);
-        }
-                
-        switch (settingAsInt) {
-            case Settings.System.VOLUME_OVERLAY_SINGLE :
-                return "single";
-            case Settings.System.VOLUME_OVERLAY_EXPANDABLE :
-                return "expandable";
-            case Settings.System.VOLUME_OVERLAY_EXPANDED :
-                return "expanded";
-            case Settings.System.VOLUME_OVERLAY_NONE :
-                return "none";
-        }
-        if (! getActivity().getResources().getBoolean(com.android.internal.R.bool.config_voice_capable)) {
-            mVolumeOverlay.setSummary(volumeSubNames[Settings.System.VOLUME_OVERLAY_EXPANDABLE]);
-            return "expandable";
-        }
-        mVolumeOverlay.setSummary(volumeSubNames[Settings.System.VOLUME_OVERLAY_SINGLE]);
-        return "single";
-    }
-
     // updateState in fact updates the UI to reflect the system state
     private void updateState(boolean force) {
         if (getActivity() == null) return;
         ContentResolver resolver = getContentResolver();
-                
-        mVolumeOverlay.setValue(getVolumeOverlaySettingValue());
-        mVolumeOverlay.setSummary(mVolumeOverlay.getEntry());
     }
 
     @Override
@@ -161,6 +153,10 @@ public class SoundSettings extends SettingsPreferenceFragment implements
             Settings.System.putInt(getContentResolver(), Settings.System.VOLBTN_MUSIC_CONTROLS,
                     mVolBtnMusicCtrl.isChecked() ? 1 : 0);
 
+        } else if (preference == mVolumeAdjustSounds) {
+            Settings.System.putInt(getContentResolver(), Settings.System.VOLUME_ADJUST_SOUNDS_ENABLED ,
+                    mVolumeAdjustSounds.isChecked() ? 1 : 0);
+
         } else {
             // If we didn't handle it, let preferences handle it.
             return super.onPreferenceTreeClick(preferenceScreen, preference);
@@ -169,13 +165,54 @@ public class SoundSettings extends SettingsPreferenceFragment implements
         return true;
     }
 
+    private void toggleFlipService() {
+        if (FlipService.isStarted()) {
+            mContext.stopService(new Intent(mContext, FlipService.class));
+        }
+        mContext.startService(new Intent(mContext, FlipService.class));
+    }
+
     public boolean onPreferenceChange(Preference preference, Object objValue) {
         final String key = preference.getKey();
         
         if (preference == mVolumeOverlay) {
-            setVolumeOverlaySettingValue(objValue.toString());
+            final int value = Integer.valueOf((String) objValue);
+            final int index = mVolumeOverlay.findIndexOfValue((String) objValue);
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.MODE_VOLUME_OVERLAY, value);
+            mVolumeOverlay.setSummary(mVolumeOverlay.getEntries()[index]);
+            return true;
+        } else if (preference == mFlipAction) {
+            int val = Integer.parseInt((String) objValue);
+            if (val != -1) {
+                mUserDownMS.setEnabled(true);
+                mFlipScreenOff.setEnabled(true);
+                AlertDialog.Builder ad = new AlertDialog.Builder(getActivity());
+                ad.setTitle(getResources().getString(R.string.flip_dialog_title));
+                ad.setMessage(getResources().getString(R.string.flip_dialog_msg));
+                ad.setPositiveButton(
+                        getResources().getString(R.string.flip_action_positive),
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                ad.show();
+                toggleFlipService();
+            } else {
+                mUserDownMS.setEnabled(false);
+                mFlipScreenOff.setEnabled(false);
+            }
+            return true;
+                
+        } else if (preference == mPhoneSilent) {
+            int val = Integer.parseInt((String) objValue);
+            if (val != 0) {
+                toggleFlipService();
+            }
+            return true;
         }
-        
-        return true;
+        return false;
     }
 }

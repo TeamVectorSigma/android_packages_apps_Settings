@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen
 	xmlns:android="http://schemas.android.com/apk/res/android"
+   android:title="@string/about_cna_settings_title"
 	xmlns:cna="http://schemas.android.com/apk/res/com.android.settings">
 
 	<PreferenceCategory
 		android:key="devs"
 		android:title="@string/devs">
 
+
 		<com.android.settings.widgets.DeveloperPreference
             android:title="Codenamedroid"
             cna:nameDev="codenamedroid"
             cna:twitterHandle="codenameandroid"
             cna:donateLink="@string/donate_cna" />
+
 
 	</PreferenceCategory>    
 
