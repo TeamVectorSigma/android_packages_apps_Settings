@@ -4333,6 +4333,7 @@
     <string name="dpi">DPI</string>
 
     <!-- Interface | Navigation ring bar -->
+    <string name="navbar_ring_cat">Navigation Bar Ring Targets</string>
     <string name="interface_navring">Ring Targets</string>
     <string name="interface_navring_custom_pref_summary">Release on target to launch </string>
     <string name="interface_navring_pref_default_summary">Tap to select a custom ring target activity</string>
