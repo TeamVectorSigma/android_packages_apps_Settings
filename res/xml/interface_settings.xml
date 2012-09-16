@@ -49,10 +49,10 @@
         android:fragment="com.android.settings.cnd.Toggles"
         android:title="@string/notification_drawer_toggles_title" />
 
-    <PreferenceScreen
+<!--    <PreferenceScreen
         android:key="navigation_bar"
         android:fragment="com.android.settings.cnd.NavbarSettings"
-        android:title="@string/navigation_bar_title" />
+        android:title="@string/navigation_bar_title" /> -->
 
     <PreferenceScreen
         android:key="navring_settings"
