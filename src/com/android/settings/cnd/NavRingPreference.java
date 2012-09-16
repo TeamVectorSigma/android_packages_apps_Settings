@@ -17,7 +17,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.settings.R;
-import com.android.settings.cnd.NavRingTargets.AppPackage;
+import com.android.settings.cnd.NavRingActions.AppPackage;
 
 public class NavRingPreference extends Preference {
     private Context mContext;
