@@ -8,13 +8,11 @@
 		android:key="devs"
 		android:title="@string/devs">
 
-
 		<com.android.settings.widgets.DeveloperPreference
             android:title="Codenamedroid"
             cna:nameDev="codenamedroid"
             cna:twitterHandle="codenameandroid"
             cna:donateLink="@string/donate_cna" />
-
 
 	</PreferenceCategory>    
 
