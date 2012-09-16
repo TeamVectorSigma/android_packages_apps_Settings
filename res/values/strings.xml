@@ -4349,6 +4349,10 @@
     <string name="interface_softkeys_screenoff_title">Screen Off</string>
     <string name="interface_softkeys_kill_process_title">Kill App</string>
     <string name="interface_softkey_package_removed">The previously selected package was not found</string>
+    <string name="title_navring_amount">Number of navigation ring targets</string>
+    <string name="summary_navring_amount">Choose the number of ring targets</string>
+    <string name="interface_navring_settings_title">Navigation bar ring</string>
+    <string name="interface_navring_settings_summary">Edit your custom nav ring apps</string>
 
     <!-- Interface | Hardware keys -->
     <string name="hardware_keys_bindings_title">Key actions</string>
