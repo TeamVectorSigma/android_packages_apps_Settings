@@ -1383,6 +1383,12 @@
     <!-- Wi-Fi settings screen, error message when the frequency band could not be set [CHAR LIMIT=50]. -->
     <string name="wifi_setting_frequency_band_error">There was a problem setting the frequency band.</string>
     <!-- Wi-Fi settings screen, advanced, title of the item to show the Wi-Fi device's MAC address. -->
+    <string name="wifi_setting_countrycode_title">Wi-Fi region code</string>
+    <!-- Wi-Fi settings screen, setting summary for setting the wifi frequency band [CHAR LIMIT=50]-->
+    <string name="wifi_setting_countrycode_summary">Specify the region code for Wi-Fi</string>
+    <!-- Wi-Fi settings screen, error message when the frequency band could not be set [CHAR LIMIT=50]. -->
+    <string name="wifi_setting_countrycode_error">There was a problem setting the region code.</string>
+    <!-- Wi-Fi settings screen, advanced, title of the item to show the Wi-Fi device's MAC address. -->
     <string name="wifi_advanced_mac_address_title">MAC address</string>
     <!-- Title of the screen to adjust IP settings -->
     <!-- Wi-Fi settings screen, advanced, title of the item to show the Wi-Fi device's current IP address. -->
@@ -4121,7 +4127,6 @@
     <string name="notification_drawer_title">Notification power widget</string>
     <string name="notification_drawer_toggles_title">Notification toggles</string>
     <string name="navigation_bar_title">Navigation bar</string>
-    <string name="interface_navring_settings">Navigation bar ring</string>
     <string name="hardware_keys_title">Hardware keys</string>
     <string name="lock_screen_title">Lock screen</string>
 
@@ -4333,12 +4338,10 @@
     <string name="dpi">DPI</string>
 
     <!-- Interface | Navigation ring bar -->
+    <string name="navbar_ring_cat">Navigation Bar Ring Targets</string>
     <string name="interface_navring">Ring Targets</string>
     <string name="interface_navring_custom_pref_summary">Release on target to launch </string>
     <string name="interface_navring_pref_default_summary">Tap to select a custom ring target activity</string>
-    <string name="interface_navring_1">Ring Target 1</string>
-    <string name="interface_navring_2">Ring Target 2</string>
-    <string name="interface_navring_3">Ring Target 3</string>
     <string name="interface_navring_assist_title">Google Now</string>
     <string name="interface_softkey_settings">Softkey Settings</string>
     <string name="interface_softkeys_pref_default_title">No Activity Selected</string>
@@ -4349,6 +4352,10 @@
     <string name="interface_softkeys_screenoff_title">Screen Off</string>
     <string name="interface_softkeys_kill_process_title">Kill App</string>
     <string name="interface_softkey_package_removed">The previously selected package was not found</string>
+    <string name="title_navring_amount">Number of navigation ring targets</string>
+    <string name="summary_navring_amount">Choose the number of ring targets</string>
+    <string name="interface_navring_settings_title">Navigation bar ring</string>
+    <string name="interface_navring_settings_summary">Edit your custom nav ring apps</string>
 
     <!-- Interface | Hardware keys -->
     <string name="hardware_keys_bindings_title">Key actions</string>
@@ -4380,13 +4387,17 @@
     <string name="lockscreen_background_color_fill">Color fill</string>
     <string name="lockscreen_background_custom_image">Custom image</string>
     <string name="lockscreen_background_default_wallpaper">Default wallpaper</string>
-    <string name="lockscreen_widgets_title">Targets &amp; Widgets alignment</string>
-    <string name="lockscreen_widgets_summary">Lock screen targets and widgets alignment</string>
+    <string name="lockscreen_targets_widget_title">Targets widget alignment</string>
+    <string name="lockscreen_targets_widget_summary">Lock screen targets widget alignment</string>
     <string name="lockscreen_text_color_title">Lock screen text color</string>
     <string name="lockscreen_interface_options_title">Lock screen interface</string>
     <string name="lockscreen_battery_status_title">Battery status</string>
     <string name="lockscreen_battery_status_charging">Only when charging</string>
     <string name="lockscreen_battery_status_alwayson">Always on</string>
+    <string name="lockscreen_clock_align_title">Clock alignment</string>
+    <string name="lockscreen_clock_align_left">Left</string>
+    <string name="lockscreen_clock_align_center">Center</string>
+    <string name="lockscreen_clock_align_right">Right</string>
     <string name="lockscreen_weather_title">Weather</string>
     <string name="lockscreen_weather_summary">Display weather information on the lock screen</string>
     <string name="lockscreen_weather_enabled">Enabled</string>
@@ -4838,6 +4849,13 @@
 
     <!-- || Extra intergrated settings strings || -->
 
+    <!-- Wifi sleep timeout -->
+    <string name="wifi_idle_mn_title">Wi-Fi idle timeout</string>
+    <string name="wifi_idle_5mn">5 minutes</string>
+    <string name="wifi_idle_15mn">15 minutes (default)</string>
+    <string name="wifi_idle_30mn">30 minutes</string>
+    <string name="wifi_idle_1h">1 hour</string>
+    <string name="wifi_idle_3h">3 hours</string>
 
     <!-- Wireless & networks | NFC polling mode -->
     <string name="nfc_polling_mode_title">NFC polling mode</string>
@@ -4864,6 +4882,10 @@
     <!-- Language & input | Text-to-speech output -->
     <string name="tts_play_example_not_found_title">Warning</string>
     <string name="tts_play_example_not_found_msg">A text string sample wasn\'t found for the requested language</string>
+
+    <!-- Stylus Icon -->
+    <string name="stylus_icon_enabled_title">Show icon when using stylus</string>
+    <string name="stylus_icon_enabled_summary">Show the pointer icon when hovering or drawing with the stylus</string>
 
     <!-- Developer options | Tools & information -->
     <string name="developer_tools_and_info_title">Tools &amp; information</string>

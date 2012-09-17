@@ -32,6 +32,14 @@
             android:entryValues="@array/wifi_sleep_policy_values"
             />
 
+    <ListPreference
+            android:key="wifi_idle_mn"
+            android:title="@string/wifi_idle_mn_title"
+            android:persistent="false"
+            android:entries="@array/wifi_idle_mn_entries"
+            android:entryValues="@array/wifi_idle_mn_values"
+            />
+
     <!-- android:dependency="enable_wifi" -->
     <CheckBoxPreference
             android:key="wifi_poor_network_detection"
@@ -46,6 +54,15 @@
             android:persistent="false"
             android:entries="@array/wifi_frequency_band_entries"
             android:entryValues="@array/wifi_frequency_band_values"
+            />
+
+    <ListPreference
+            android:key="wifi_countrycode"
+            android:title="@string/wifi_setting_countrycode_title"
+            android:summary="@string/wifi_setting_countrycode_summary"
+            android:persistent="false"
+            android:entries="@array/wifi_countrycode_entries"
+            android:entryValues="@array/wifi_countrycode_values"
             />
     
     <Preference android:key="mac_address" 
