@@ -27,6 +27,7 @@ public class About extends SettingsPreferenceFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle(R.string.title_about);
         addPreferencesFromResource(R.xml.about_rom);
         mSiteUrl = findPreference("cna_website");
         mForumUrl = findPreference("cna_forum");

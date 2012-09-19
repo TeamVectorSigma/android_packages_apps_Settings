@@ -61,13 +61,11 @@ public class PowerWidget extends SettingsPreferenceFragment implements
     private static final String UI_EXP_WIDGET_HIDE_ONCHANGE = "expanded_hide_onchange";
     private static final String UI_EXP_WIDGET_HIDE_SCROLLBAR = "expanded_hide_scrollbar";
     private static final String UI_EXP_WIDGET_HAPTIC_FEEDBACK = "expanded_haptic_feedback";
-    private static final String PREF_BRIGHTNESS_LOC = "brightness_location";
 
     private CheckBoxPreference mPowerWidget;
     private CheckBoxPreference mPowerWidgetHideOnChange;
     private CheckBoxPreference mPowerWidgetHideScrollBar;
     private ListPreference mPowerWidgetHapticFeedback;
-    private ListPreference mBrightnessLocation;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -91,7 +89,7 @@ public class PowerWidget extends SettingsPreferenceFragment implements
 
             mPowerWidget.setChecked((Settings.System.getInt(getActivity().getApplicationContext()
                     .getContentResolver(),
-                    Settings.System.EXPANDED_VIEW_WIDGET, 0) == 1));
+                    Settings.System.EXPANDED_VIEW_WIDGET, 1) == 1));
             mPowerWidgetHideOnChange.setChecked((Settings.System.getInt(getActivity()
                     .getApplicationContext().getContentResolver(),
                     Settings.System.EXPANDED_HIDE_ONCHANGE, 0) == 1));
@@ -101,11 +99,6 @@ public class PowerWidget extends SettingsPreferenceFragment implements
             mPowerWidgetHapticFeedback.setValue(Integer.toString(Settings.System.getInt(
                     getActivity().getApplicationContext().getContentResolver(),
                     Settings.System.EXPANDED_HAPTIC_FEEDBACK, 2)));
-
-            mBrightnessLocation = (ListPreference) findPreference(PREF_BRIGHTNESS_LOC);
-            mBrightnessLocation.setOnPreferenceChangeListener(this);
-            mBrightnessLocation.setValue(Integer.toString(Settings.System.getInt(getActivity()
-                    .getContentResolver(), Settings.System.STATUSBAR_TOGGLES_BRIGHTNESS_LOC, 1)));
         }
     }
 
@@ -116,11 +109,6 @@ public class PowerWidget extends SettingsPreferenceFragment implements
             Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
                     Settings.System.EXPANDED_HAPTIC_FEEDBACK, intValue);
             mPowerWidgetHapticFeedback.setSummary(mPowerWidgetHapticFeedback.getEntries()[index]);
-            return true;
-        } else if (preference == mBrightnessLocation) {
-            int val = Integer.parseInt((String) newValue);
-            Settings.System.putInt(getActivity().getContentResolver(),
-            Settings.System.STATUSBAR_TOGGLES_BRIGHTNESS_LOC, val);
             return true;
         }
         return false;
@@ -161,7 +149,6 @@ public class PowerWidget extends SettingsPreferenceFragment implements
         private static final String TAG = "PowerWidgetActivity";
 
         private static final String BUTTONS_CATEGORY = "pref_buttons";
-        private static final String BUTTON_MODES_CATEGORY = "pref_buttons_modes";
         private static final String SELECT_BUTTON_KEY_PREFIX = "pref_button_";
 
         private static final String EXP_BRIGHTNESS_MODE = "pref_brightness_mode";
@@ -189,7 +176,6 @@ public class PowerWidget extends SettingsPreferenceFragment implements
             addPreferencesFromResource(R.xml.power_widget);
 
             PreferenceScreen prefSet = getPreferenceScreen();
-            PackageManager pm = getPackageManager();
 
             if (getActivity().getApplicationContext() == null) {
                 return;
@@ -234,10 +220,6 @@ public class PowerWidget extends SettingsPreferenceFragment implements
             PreferenceCategory prefButtons = (PreferenceCategory) prefSet
                     .findPreference(BUTTONS_CATEGORY);
 
-            // Add the available mode buttons, incase they need to be removed later
-            PreferenceCategory prefButtonsModes = (PreferenceCategory) prefSet
-                    .findPreference(BUTTON_MODES_CATEGORY);
-
             // empty our preference category and set it to order as added
             prefButtons.removeAll();
             prefButtons.setOrderingAsAdded(false);
@@ -253,14 +235,6 @@ public class PowerWidget extends SettingsPreferenceFragment implements
             boolean isWimaxEnabled = WimaxHelper.isWimaxSupported(getActivity());
             if (!isWimaxEnabled) {
                 PowerWidgetUtil.BUTTONS.remove(PowerWidgetUtil.BUTTON_WIMAX);
-            }
-
-            // Don't show mobile data options if not supported
-            boolean isMobileData = pm.hasSystemFeature(PackageManager.FEATURE_TELEPHONY);
-            if (!isMobileData) {
-                PowerWidgetUtil.BUTTONS.remove(PowerWidgetUtil.BUTTON_MOBILEDATA);
-                PowerWidgetUtil.BUTTONS.remove(PowerWidgetUtil.BUTTON_NETWORKMODE);
-                prefButtonsModes.removePreference(mNetworkMode);
             }
 
             // fill that checkbox map!

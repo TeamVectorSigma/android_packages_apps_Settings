@@ -22,7 +22,6 @@
         android:title="@string/title_buttons" />
 
     <PreferenceCategory
-        android:key="pref_buttons_modes"
         android:title="@string/title_button_modes">
 
         <MultiSelectListPreference
