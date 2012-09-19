@@ -32,4 +32,7 @@
 
     <!-- Whether User management screen is available -->
     <bool name="enable_user_management">false</bool>
+
+    <!-- Show Device Options in Settings menu -->
+    <bool name="has_advanced_settings">true</bool>
 </resources>
