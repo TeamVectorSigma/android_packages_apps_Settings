@@ -71,8 +71,7 @@ public class Processor extends SettingsPreferenceFragment implements
                 while (!mInterrupt) {
                     sleep(500);
                     final String curFreq = Utils.fileReadOneLine(FREQ_CUR_FILE);
-                    if (curFreq != null)
-                        mCurCPUHandler.sendMessage(mCurCPUHandler.obtainMessage(0, curFreq));
+                    mCurCPUHandler.sendMessage(mCurCPUHandler.obtainMessage(0, curFreq));
                 }
             } catch (InterruptedException e) {
             }
