@@ -1767,6 +1767,7 @@
 		<item>Search</item>
 		<item>Menu</item>
 		<item>Toggle Widgets</item>
+        <item>Open IME Switcher</item>
 		<item>Kill app</item>
 		<item>Power</item>
         <item>Notifications</item>
@@ -1781,6 +1782,7 @@
 		<item>**search**</item>
 		<item>**menu**</item>
 		<item>**widgets**</item>
+        <item>**ime**</item>
 		<item>**kill**</item>
 		<item>**power**</item>
         <item>**notifications**</item>
@@ -1895,6 +1897,10 @@
     <string-array name="navring_dialog_entries">
         <item>None</item>
         <item>Take Screenshot</item>
+        <item>Open IME Switcher</item>
+        <item>Ring/Vib</item>
+        <item>Ring/Silent</item>
+        <item>Ring/Vib/Silent</item>
         <item>Kill App</item>
         <item>Screen Off</item>
         <item>Google Now</item>
@@ -1904,6 +1910,10 @@
     <string-array name="navring_dialog_values">
         <item>none</item>
         <item>screenshot</item>
+        <item>ime_switcher</item>
+        <item>ring_vib</item>
+        <item>ring_silent</item>
+        <item>ring_vib_silent</item>
         <item>killcurrent</item>
         <item>screenoff</item>
         <item>assist</item>
@@ -2122,6 +2132,33 @@
         <item>210000</item>
         <item>240000</item>
         <item>300000</item>
+    </string-array>
+
+    <string-array name="lcd_density_entries" translatable="false">
+        <item>160</item>
+        <item>180</item>
+        <item>200</item>
+        <item>220</item>
+        <item>240</item>
+        <item>241</item>
+        <item>260</item>
+        <item>280</item>
+        <item>300</item>
+        <item>320</item>
+        <item>340</item>
+        <item>@string/custom_density</item>
+    </string-array>
+
+    <string-array name="lcd_density_stock_entries">
+        <item>160 -- mdpi</item>
+        <item>240 -- hdpi</item>
+        <item>320 -- xhdpi</item>
+    </string-array>
+
+    <string-array name="lcd_density_stock_values" translatable="false">
+        <item>160</item>
+        <item>240</item>
+        <item>320</item>
     </string-array>
 
     <!-- **** EXTRA EDITS END **** -->
