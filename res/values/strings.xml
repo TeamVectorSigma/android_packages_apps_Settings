@@ -4132,6 +4132,10 @@
 
     <!-- Interface | General UI -->
     <string name="misc">Misc</string>
+    <string name="notification_wallpaper_title">Choose notification background</string>
+    <string name="notification_wallpaper_summary">You can remove the wallpaper from the menu in this window</string>
+    <string name="notif_wallpaper_alpha_title">Notification background alpha</string>
+    <string name="alpha_dialog_title">Set alpha value</string>
     <string name="custom_carrier_label_title">Custom carrier label</string>
     <string name="custom_carrier_label_explain">Please enter a new label. Enter an empty label to revert to stock label.</string>
     <string name="custom_carrier_label_notset">Custom label currently not set</string>
@@ -4154,10 +4158,13 @@
     <string name="power_menu_reboot_title">Reboot menu</string>
     <string name="power_menu_profiles_title">Profile switcher</string>
     <string name="power_menu_screenshot_title">Screenshot</string>
+    <string name="power_menu_expanded_desktop">Status bar toggle</string>
     <string name="power_menu_navbartoggle_title">Navigation bar toggle</string>
     <string name="power_menu_silenttoggle_title">Silent toggle</string>
 
     <!-- Interface | Status bar -->
+    <string name="status_bar_transparency_title">Statusbar Transparency</string>
+    <string name="status_bar_transparency_summary">Adjust statusbar transparency</string>
     <string name="battery_icon_category">Battery icon options</string>
     <string name="battery_icon">Battery icon style</string>
     <string name="battery_not_title">Battery icon in notifications</string>
@@ -4338,6 +4345,10 @@
     <string name="glow_times_quick">Quick</string>
     <string name="glow_times_normal">Normal</string>
     <string name="navigation_bar_style">Navigation bar style</string>
+    <string name="interface_navbar_color_title">Navigation bar color</string>
+    <string name="interface_navbar_color_summary">Change the color of the navigation bar</string>
+    <string name="interface_navbar_restore_stock_color">Restore stock navigation bar color</string>
+    <string name="interface_navbar_restore_stock_color_summary">Restore stock black color of the navigation bar</string>
     <string name="button_transparency_title">Navigation button transparency</string>
     <string name="menu_nav_bar_reset">Reset navigation bar</string>
     <string name="dpi">DPI</string>

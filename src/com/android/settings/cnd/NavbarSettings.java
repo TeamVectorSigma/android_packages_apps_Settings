@@ -4,6 +4,7 @@ package com.android.settings.cnd;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 
@@ -14,6 +15,7 @@ import android.app.ListFragment;
 import android.appwidget.AppWidgetHost;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProviderInfo;
+import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -54,6 +56,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.settings.cnd.ColorPreference;
 import com.android.settings.cnd.NavRingTargets;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.R;
@@ -65,7 +68,7 @@ import com.android.settings.widgets.SeekBarPreference;
 import net.margaritov.preference.colorpicker.ColorPickerPreference;
 
 public class NavbarSettings extends SettingsPreferenceFragment implements
-        OnPreferenceChangeListener, ShortcutPickerHelper.OnPickListener {
+        OnPreferenceChangeListener, ShortcutPickerHelper.OnPickListener, Preference.OnPreferenceClickListener {
 
     // move these later
 	private static final String PREF_MENU_UNLOCK = "pref_menu_display";
@@ -101,6 +104,11 @@ public class NavbarSettings extends SettingsPreferenceFragment implements
     ListPreference mNavigationBarHeightLandscape;
     ListPreference mNavigationBarWidth;
     SeekBarPreference mButtonAlpha;
+    ColorPreference mNavBar;
+    Preference mStockColor;
+
+    private File customnavImage;
+    private File customnavTemp;
 
     private int mPendingIconIndex = -1;
     private int mPendingWidgetDrawer = -1;
@@ -126,6 +134,9 @@ public class NavbarSettings extends SettingsPreferenceFragment implements
         PreferenceScreen prefs = getPreferenceScreen();
 
         mPicker = new ShortcutPickerHelper(this, this);
+
+        customnavImage = new File(getActivity().getFilesDir()+"navbar_icon_" + mPendingIconIndex + ".png");
+        customnavTemp = new File(getActivity().getCacheDir()+"/"+"tmp_icon_" + mPendingIconIndex + ".png");
 
         mNavRingTargets = findPreference("navring_settings");
 
@@ -187,6 +198,13 @@ public class NavbarSettings extends SettingsPreferenceFragment implements
 
         mNavigationBarWidth = (ListPreference) findPreference("navigation_bar_width");
         mNavigationBarWidth.setOnPreferenceChangeListener(this);
+
+        mNavBar = (ColorPreference) findPreference("interface_navbar_color");
+        mNavBar.setProviderTarget(Settings.System.SYSTEMUI_NAVBAR_COLOR,
+                                  Settings.System.SYSTEMUI_NAVBAR_COLOR_DEF);
+        
+        mStockColor = (Preference) findPreference("interface_navbar_color_default");
+        mStockColor.setOnPreferenceClickListener(this);
 
         if (mTablet) {
             prefs.removePreference(mNavBarMenuDisplay);
@@ -390,6 +408,16 @@ public class NavbarSettings extends SettingsPreferenceFragment implements
     }
 
     @Override
+    public boolean onPreferenceClick(Preference pref) {
+        // TODO Auto-generated method stub
+        if (pref.equals(mStockColor)) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.SYSTEMUI_NAVBAR_COLOR, -1);
+        }
+        return false;
+    }
+
+    @Override
     public Dialog onCreateDialog(int dialogId) {
          switch (dialogId) {
             case DIALOG_NAVBAR_HEIGHT_REBOOT:
@@ -490,7 +518,11 @@ public class NavbarSettings extends SettingsPreferenceFragment implements
                     return; // NOOOOO
                 }
 
-                Uri selectedImageUri = getTempFileUri();
+                if (customnavTemp.exists()) {
+                    customnavTemp.renameTo(customnavImage);
+                }
+
+                Uri selectedImageUri = Uri.fromFile(customnavImage);
                 Log.e(TAG, "Selected image path: " + selectedImageUri.getPath());
                 Bitmap bitmap = BitmapFactory.decodeFile(selectedImageUri.getPath());
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, iconStream);
@@ -564,6 +596,28 @@ public class NavbarSettings extends SettingsPreferenceFragment implements
             pAction.setImageListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    mPendingIconIndex = index;
+                    int width = 100;
+                    int height = width;
+                    
+                    Intent intent = new Intent(Intent.ACTION_GET_CONTENT, null);
+                    intent.setType("image/*");
+                    intent.putExtra("crop", "true");
+                    intent.putExtra("scale", true);
+                    intent.putExtra("outputFormat", Bitmap.CompressFormat.PNG.toString());
+                    intent.putExtra("aspectX", width);
+                    intent.putExtra("aspectY", height);
+                    intent.putExtra("outputX", width);
+                    intent.putExtra("outputY", height);
+                try {
+                    customnavTemp.createNewFile();
+                    customnavTemp.setWritable(true, false);
+                    intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(customnavTemp));
+                    intent.putExtra("return-data", false);
+                    startActivityForResult(intent, REQUEST_PICK_CUSTOM_ICON);
+                } catch (IOException e) {
+                } catch (ActivityNotFoundException e) {
+                }
                 }
             });
 
@@ -718,12 +772,6 @@ public class NavbarSettings extends SettingsPreferenceFragment implements
             }
             mPendingNavBarCustomAction.preference.setSummary(friendlyName);
         }
-    }
-
-    private Uri getTempFileUri() {
-        return Uri.fromFile(new File(Environment.getExternalStorageDirectory(),
-                "tmp_icon_" + mPendingIconIndex + ".png"));
-
     }
 
     private String getIconFileName(int index) {
