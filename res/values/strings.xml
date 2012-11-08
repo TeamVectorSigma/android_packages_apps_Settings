@@ -31,11 +31,11 @@
     <!-- Settings main menu category heading. Wireless and networks (Wi-Fi, Bluetooth, data usage...). [CHAR LIMIT=40] -->
     <string name="header_category_wireless_networks">WIRELESS &amp; NETWORKS</string>
     <!-- Settings main menu category heading. Device (Sound, display, battery, applications...). [CHAR LIMIT=40] -->
-    <string name="header_category_device">DEVICE</string>
+    <string name="header_category_device">CUSTOMIZE DEVICE</string>
     <!-- Settings main menu category heading. Personal (Accounts, security, language, backup...). [CHAR LIMIT=40] -->
-    <string name="header_category_personal">PERSONAL</string>
+    <string name="header_category_personal">PERSONALIZE DEVICE</string>
     <!-- Settings main menu category heading. System (Updates, data, accessibility, about phone). [CHAR LIMIT=40] -->
-    <string name="header_category_system">SYSTEM</string>
+    <string name="header_category_system">THE SYSTEM</string>
 
     <!-- Phone info -->
     <!-- Phone Info screen. Button label to turn on the radio . Only shown in diagnostic screen, so precise translation is not needed. -->
@@ -156,7 +156,7 @@
     <!-- Battery Info screen. Units shown after a value.  Used for diagnostic info screens, precise translation isn't needed -->
     <string name="battery_info_voltage_units">mV</string>
     <!-- Battery Info screen. Label for a status item.  Used for diagnostic info screens, precise translation isn't needed -->
-    <string name="battery_info_temperature_label">Battery temperature:</string>
+    <string name="battery_info_temperature_label">Battery Temperature:</string>
     <!-- Battery Info screen. Units shown after a value.  Used for diagnostic info screens, precise translation isn't needed -->
     <string name="battery_info_temperature_units">\u00B0 C</string>
     <!-- Battery Info screen. Label for a status item.  Used for diagnostic info screens, precise translation isn't needed -->
@@ -4110,14 +4110,14 @@
     <!-- EXTRA ADDITIONS START -->
 
     <!-- CN(A) Main Header Category & Titles -->
-    <string name="header_category_rom_settings">Custom</string>
-    <string name="interface_settings_title">Interface</string>
+    <string name="header_category_rom_settings">Customize Rom</string>
+    <string name="interface_settings_title">User Interface</string>
     <string name="performance_settings_title">Performance</string>
     <string name="profiles_settings_title">Profiles</string>
     <string name="quiet_hours_title">Quiet hours</string>
     <string name="themes_settings_title">Themes</string>
     <string name="launcher_settings_title">Launcher</string>
-    <string name="advanced_settings_title">Device</string>
+    <string name="advanced_settings_title">Device Extra</string>
     <string name="about_cna_settings_title">About CodeName(A)</string>
 
     <!-- Interface | Titles -->
@@ -4923,14 +4923,14 @@
     <string name="tts_play_example_not_found_msg">A text string sample wasn\'t found for the requested language</string>
 
     <!-- Developer options | Tools & information -->
-    <string name="developer_tools_and_info_title">Tools &amp; information</string>
-    <string name="development_tools_title">Developer tools</string>
-    <string name="device_info_title">Device information</string>
+    <string name="developer_tools_and_info_title">Tools &amp; Information</string>
+    <string name="development_tools_title">Developer Tools</string>
+    <string name="device_info_title">Device Information</string>
 
     <!-- Developer options | Build property modifier -->
     <string name="propmodder_title">PropModder</string>
     <string name="propmodder_switches">Switches</string>
-    <string name="buildprop_title">Reboot required</string>
+    <string name="buildprop_title">Reboot Tequired</string>
     <string name="buildprop_settings_warning">These settings are included for experimentation and any changes made to them have the potential to cause instability, crashes, data loss or hardware failures</string>
     <string name="nonprop_cat_title">Mods involving init.d script</string>
     <string name="pref_wifi_scan_interval_title">Wifi scan interval</string>
@@ -4990,10 +4990,10 @@
     <string name="adb_notify_summary">Display a notification when USB debugging is connected</string>
 
     <!-- About device | Hardware info -->
-    <string name="hardware_info">Hardware information</string>
-    <string name="device_rear_camera">Rear camera</string>
-    <string name="device_front_camera">Front facing camera</string>
-    <string name="device_screen_resolution">Screen resolution</string>
+    <string name="hardware_info">Hardware Information</string>
+    <string name="device_rear_camera">Rear Camera</string>
+    <string name="device_front_camera">Front Facing Camera</string>
+    <string name="device_screen_resolution">Screen Resolution</string>
     <string name="gpu_info">GPU</string>
     <string name="cpu_info">CPU</string>
     <string name="mem_info">Memory</string>
