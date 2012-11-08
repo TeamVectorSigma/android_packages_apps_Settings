@@ -4110,15 +4110,15 @@
     <!-- EXTRA ADDITIONS START -->
 
     <!-- CN(A) Main Header Category & Titles -->
-    <string name="header_category_rom_settings">ROM</string>
+    <string name="header_category_rom_settings">Custom</string>
     <string name="interface_settings_title">Interface</string>
     <string name="performance_settings_title">Performance</string>
     <string name="profiles_settings_title">Profiles</string>
     <string name="quiet_hours_title">Quiet hours</string>
     <string name="themes_settings_title">Themes</string>
     <string name="launcher_settings_title">Launcher</string>
-    <string name="advanced_settings_title">Advanced</string>
-    <string name="about_cna_settings_title">About CN(A)</string>
+    <string name="advanced_settings_title">Device</string>
+    <string name="about_cna_settings_title">About CodeName(A)</string>
 
     <!-- Interface | Titles -->
     <string name="general_ui_settings_title">@string/sound_category_sound_title</string>
