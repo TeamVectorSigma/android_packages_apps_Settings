@@ -4117,7 +4117,7 @@
     <string name="quiet_hours_title">Quiet hours</string>
     <string name="themes_settings_title">Themes</string>
     <string name="launcher_settings_title">Launcher</string>
-    <string name="advanced_settings_title">Device Extra</string>
+    <string name="advanced_settings_title">Advanced</string>
     <string name="about_cna_settings_title">About CodeName(A)</string>
 
     <!-- Interface | Titles -->
@@ -4930,7 +4930,7 @@
     <!-- Developer options | Build property modifier -->
     <string name="propmodder_title">PropModder</string>
     <string name="propmodder_switches">Switches</string>
-    <string name="buildprop_title">Reboot Tequired</string>
+    <string name="buildprop_title">Reboot Required</string>
     <string name="buildprop_settings_warning">These settings are included for experimentation and any changes made to them have the potential to cause instability, crashes, data loss or hardware failures</string>
     <string name="nonprop_cat_title">Mods involving init.d script</string>
     <string name="pref_wifi_scan_interval_title">Wifi scan interval</string>
