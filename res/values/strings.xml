@@ -218,11 +218,11 @@
     <!-- Bluetooth settings screen, summary text when not discoverable with paired devices [CHAR LIMIT=50] -->
     <string name="bluetooth_only_visible_to_paired_devices">Only visible to paired devices</string>
     <!-- Bluetooth settings screen, Discoverable checkbox summary text -->
-    <string name="bluetooth_not_discoverable">Make device discoverable</string>
+    <string name="bluetooth_not_discoverable">Make Device Discoverable</string>
     <!-- Bluetooth settings screen, option name to pick discoverability timeout duration (a list dialog comes up) -->
-    <string name="bluetooth_visibility_timeout">Visibility timeout</string>
+    <string name="bluetooth_visibility_timeout">Visibility Timeout</string>
     <!-- Bluetooth settings screen, Discoverable timout list dialog summary text -->
-    <string name="bluetooth_visibility_timeout_summary">Set how long device will be discoverable</string>
+    <string name="bluetooth_visibility_timeout_summary">Set how long the Device will be Discoverable</string>
     <!-- Bluetooth settings screen, check box label whether or not to allow
         bluetooth voice dialing when lock screen is up-->
     <string name="bluetooth_lock_voice_dialing">Lock voice dialing</string>
@@ -231,32 +231,32 @@
       Prevent use of the bluetooth dialer when the screen is locked
     </string>
     <!-- Bluetooth settings screen, heading above the list of nearby bluetooth devices -->
-    <string name="bluetooth_devices">Bluetooth devices</string>
+    <string name="bluetooth_devices">Bluetooth Devices</string>
     <!-- Bluetooth settings screen, title for the current bluetooth name setting -->
-    <string name="bluetooth_device_name">Device name</string>
+    <string name="bluetooth_device_name">Device Name</string>
     <!-- Bluetooth settings screen, image description for device details button. This opens the screen to rename, unpair, etc. a single device. -->
-    <string name="bluetooth_device_details">Device settings</string>
+    <string name="bluetooth_device_details">Device Settings</string>
     <!-- Bluetooth settings screen, image description for profile of a device details button. -->
-    <string name="bluetooth_profile_details">Profile settings</string>
+    <string name="bluetooth_profile_details">Profile Settings</string>
     <!-- Bluetooth settings screen, summary text when there isn't a name set (for the name setting) -->
-    <string name="bluetooth_name_not_set">No name set, using account name</string>
+    <string name="bluetooth_name_not_set">No name set, using Account Name</string>
     <!-- Bluetooth settings screen, menu item to scan for nearby bluetooth devices -->
-    <string name="bluetooth_scan_for_devices">Scan for devices</string>
+    <string name="bluetooth_scan_for_devices">Scan for Devices</string>
     <!-- Bluetooth settings screen, menu item to change this device's Bluetooth name. [CHAR LIMIT=30] -->
-    <string name="bluetooth_rename_device" product="tablet">Rename tablet</string>
+    <string name="bluetooth_rename_device" product="tablet">Rename Tablet</string>
     <!-- Bluetooth settings screen, menu item to change this device's Bluetooth name. [CHAR LIMIT=30] -->
-    <string name="bluetooth_rename_device" product="default">Rename phone</string>
+    <string name="bluetooth_rename_device" product="default">Rename Phone</string>
     <!-- Bluetooth settings screen, confirmation button for rename device dialog. [CHAR LIMIT=20] -->
     <string name="bluetooth_rename_button">Rename</string>
     <!-- Bluetooth settings.  Dialog title to confirm disconnecting from all profiles of a device. [CHAR LIMIT=30] -->
     <string name="bluetooth_disconnect_title">Disconnect?</string>
     <!-- Bluetooth settings.  Message for disconnecting from all profiles of a bluetooth device. [CHAR LIMIT=NONE] -->
-    <string name="bluetooth_disconnect_all_profiles">This will end your connection with:&lt;br>&lt;b><xliff:g id="device_name">%1$s</xliff:g>&lt;/b></string>
+    <string name="bluetooth_disconnect_all_profiles">This will End your Connection with:&lt;br>&lt;b><xliff:g id="device_name">%1$s</xliff:g>&lt;/b></string>
 
     <!-- Bluetooth settings.  Dialog title to disable a single profile of a device. [CHAR LIMIT=40] -->
-    <string name="bluetooth_disable_profile_title">Disable profile?</string>
+    <string name="bluetooth_disable_profile_title">Disable Profile?</string>
     <!-- Bluetooth settings.  Message for disabling a profile of a bluetooth device. [CHAR LIMIT=NONE] -->
-    <string name="bluetooth_disable_profile_message">This will disable:&lt;br>&lt;b><xliff:g id="profile_name">%1$s</xliff:g>&lt;/b>&lt;br>&lt;br>From:&lt;br>&lt;b><xliff:g id="device_name">%2$s</xliff:g>&lt;/b></string>
+    <string name="bluetooth_disable_profile_message">This will Disable:&lt;br>&lt;b><xliff:g id="profile_name">%1$s</xliff:g>&lt;/b>&lt;br>&lt;br>From:&lt;br>&lt;b><xliff:g id="device_name">%2$s</xliff:g>&lt;/b></string>
 
     <!-- Bluetooth settings.  Message when connected to a device. [CHAR LIMIT=40] -->
     <string name="bluetooth_connected">Connected</string>
@@ -277,7 +277,7 @@
     <!--Bluetooth settings screen, summary text under individual Bluetooth devices when pairing -->
     <string name="bluetooth_pairing">Pairing\u2026</string>
     <!--Bluetooth settings screen, summary text for Bluetooth device with no name -->
-    <string name="bluetooth_device">Unnamed Bluetooth device</string>
+    <string name="bluetooth_device">Unnamed Bluetooth Device</string>
     <!--Bluetooth settings screen, text that appears in heading bar when scanning for devices -->
     <string name="progress_scanning">Searching</string>
     <!--Bluetooth settings screen, text that appears when scanning for devices is finished and no nearby bluetooth device was found [CHAR LIMIT=40]-->
@@ -285,20 +285,20 @@
     <!-- Notification ticker text (shown in the status bar) when a Bluetooth device wants to pair with us -->
     <string name="bluetooth_notif_ticker">Bluetooth pairing request</string>
     <!-- Notification title when a Bluetooth device wants to pair with us -->
-    <string name="bluetooth_notif_title">Pairing request</string>
+    <string name="bluetooth_notif_title">Pairing request ...</string>
     <!-- Notification message when a Bluetooth device wants to pair with us -->
     <string name="bluetooth_notif_message">Touch to pair with <xliff:g id="device_name">%1$s</xliff:g>.</string>
     <!-- Bluetooth settings screen, menu to show the list of received files [CHAR LIMIT=30] -->
     <string name="bluetooth_show_received_files">Show received files</string>
 
     <!-- Strings for BluetoothDevicePicker -->
-    <string name="device_picker">Bluetooth device chooser</string>
+    <string name="device_picker">Bluetooth Device Chooser</string>
 
     <!-- Strings for dialog title when asking to the user whether to allow an app to enable discovery mode -->
-    <string name="bluetooth_permission_request">"Bluetooth permission request"</string>
+    <string name="bluetooth_permission_request">"Bluetooth Permission Request"</string>
 
     <!-- Strings for asking to the user whether to allow an app to enable bluetooth -->
-    <string name="bluetooth_ask_enablement">"An app wants to turn on Bluetooth. Allow?"</string>
+    <string name="bluetooth_ask_enablement">"An App wants to Turn On Bluetooth. Allow?"</string>
 
     <!-- Strings for asking to the user whether to allow an app to enable discovery mode -->
     <string name="bluetooth_ask_discovery" product="tablet">"An app on your tablet wants to make your tablet discoverable by other Bluetooth devices for <xliff:g id="timeout">%1$d</xliff:g> seconds. Allow?"</string>
@@ -306,17 +306,17 @@
     <string name="bluetooth_ask_discovery" product="default">"An app on your phone wants to make your phone discoverable by other Bluetooth devices for <xliff:g id="timeout">%1$d</xliff:g> seconds. Allow?"</string>
 
     <!-- Strings for asking to the user whether to allow an app to enable lasting discovery mode  -->
-    <string name="bluetooth_ask_lasting_discovery" product="tablet">"An app on your tablet wants to make your tablet \u201calways discoverable\u201d by other Bluetooth devices. Allow?"</string>
-    <string name="bluetooth_ask_lasting_discovery" product="default">"An app on your phone wants to make your phone \u201calways discoverable\u201d by other Bluetooth devices. Allow?"</string>
+    <string name="bluetooth_ask_lasting_discovery" product="tablet">"An App on your tablet wants to make your tablet \u201calways discoverable\u201d by other Bluetooth devices. Allow?"</string>
+    <string name="bluetooth_ask_lasting_discovery" product="default">"An App on your phone wants to make your phone \u201calways discoverable\u201d by other Bluetooth devices. Allow?"</string>
 
     <!-- Strings for asking to the user whether to allow an app to enable bluetooth and discovery mode -->
-    <string name="bluetooth_ask_enablement_and_discovery" product="tablet">"An app on your tablet wants to turn on Bluetooth and make your tablet discoverable by other devices for <xliff:g id="timeout">%1$d</xliff:g> seconds. Allow?"</string>
+    <string name="bluetooth_ask_enablement_and_discovery" product="tablet">"An App on your tablet wants to turn on Bluetooth and make your tablet discoverable by other devices for <xliff:g id="timeout">%1$d</xliff:g> seconds. Allow?"</string>
     <!-- Strings for asking to the user whether to allow an app to enable bluetooth and discovery mode -->
-    <string name="bluetooth_ask_enablement_and_discovery" product="default">"An app on your phone wants to turn on Bluetooth and make your phone discoverable by other devices for <xliff:g id="timeout">%1$d</xliff:g> seconds. Allow?"</string>
+    <string name="bluetooth_ask_enablement_and_discovery" product="default">"An App on your phone wants to turn on Bluetooth and make your phone discoverable by other devices for <xliff:g id="timeout">%1$d</xliff:g> seconds. Allow?"</string>
 
     <!-- Strings for asking to the user whether to allow an app to enable bluetooth and discovery mode -->
-    <string name="bluetooth_ask_enablement_and_lasting_discovery" product="tablet">"An app on your tablet wants to turn on Bluetooth and make your tablet discoverable by other devices. Allow?"</string>
-    <string name="bluetooth_ask_enablement_and_lasting_discovery" product="default">"An app on your phone wants to turn on Bluetooth and make your phone discoverable by other devices. Allow?"</string>
+    <string name="bluetooth_ask_enablement_and_lasting_discovery" product="tablet">"An App on your tablet wants to turn on Bluetooth and make your tablet discoverable by other devices. Allow?"</string>
+    <string name="bluetooth_ask_enablement_and_lasting_discovery" product="default">"An App on your phone wants to turn on Bluetooth and make your phone discoverable by other devices. Allow?"</string>
 
     <!-- Strings for msg to display to user while bluetooth is turning on [CHAR LIMIT=60] -->
     <string name="bluetooth_turning_on">"Turning Bluetooth on\u2026"</string>
@@ -325,22 +325,22 @@
     <string name="bluetooth_turning_off">"Turning Bluetooth off\u2026"</string>
 
     <!-- Strings for device profile auto connect setting -->
-    <string name="bluetooth_auto_connect">Auto-connect</string>
+    <string name="bluetooth_auto_connect">Auto-Connect</string>
 
     <!-- Activity label of BluetoothPermissionActivity [CHAR LIMIT=none]-->
-    <string name="bluetooth_connection_permission_request">"Bluetooth connection request"</string>
+    <string name="bluetooth_connection_permission_request">"Bluetooth Connection Request"</string>
 
     <!-- Notification message when a remote Bluetooth device wants to connect to a Bluetooth profile [CHAR LIMIT=none]-->
-    <string name="bluetooth_connection_notif_message">"Touch to connect to \u0022<xliff:g id="device_name">%1$s</xliff:g>\u0022."</string>
+    <string name="bluetooth_connection_notif_message">"Touch to Connect to \u0022<xliff:g id="device_name">%1$s</xliff:g>\u0022."</string>
 
     <!-- Bluetooth connection permission Alert Activity text [CHAR LIMIT=none]-->
-    <string name="bluetooth_connection_dialog_text">"Do you want to connect to \u0022<xliff:g id="device_name">%1$s</xliff:g>\u0022?"</string>
+    <string name="bluetooth_connection_dialog_text">"Do you want to Connect to \u0022<xliff:g id="device_name">%1$s</xliff:g>\u0022?"</string>
 
     <!-- Activity label of BluetoothPbPermissionActivity, also used as Strings in the permission dialog [CHAR LIMIT=none] -->
-    <string name="bluetooth_phonebook_request">"Phone book request"</string>
+    <string name="bluetooth_phonebook_request">"PhoneBook Request"</string>
 
     <!-- Bluetooth phone book permission Alert Activity text [CHAR LIMIT=none] -->
-    <string name="bluetooth_pb_acceptance_dialog_text">%1$s wants to access your contacts and call history. Give access to %2$s?</string>
+    <string name="bluetooth_pb_acceptance_dialog_text">%1$s wants to access your Contacts and Call History. Give access to %2$s?</string>
 
     <!-- Bluetooth phone book permission Alert Activity checkbox text [CHAR LIMIT=none] -->
     <string name="bluetooth_pb_remember_choice">Don\'t ask again</string>
@@ -352,7 +352,7 @@
     <!-- Date/time settings.  Summary of the checkbox for choosing between 12 hour time or 24 hour time.  Sample of 24-hour time -->
     <string name="date_time_24_hour_sample">13:00</string>
     <!-- The title of the activity to pick a time zone. -->
-    <string name="choose_timezone">Choose time zone</string>
+    <string name="choose_timezone">Choose Time Zone</string>
     <!-- Do not translate. Used as the value for a setting. -->
     <string name="default_date_format"><xliff:g id="default_date_format">MM/dd/yyyy</xliff:g></string>
 
@@ -363,7 +363,7 @@
     <!-- Label of preview text when tweaking font size -->
     <string name="display_preview_label">Preview:</string>
     <!-- Label for chosen font size -->
-    <string name="display_font_size_label">Font size:</string>
+    <string name="display_font_size_label">Font Size:</string>
 
     <!-- Used for diagnostic screens, precise translation is not necessary -->
     <string name="intent_sender_data_label"><xliff:g id="data">Data:</xliff:g></string>
@@ -387,11 +387,11 @@
     <!-- HTTP proxy settings. The hint text field for port. -->
     <string name="proxy_port_hint" translatable="false">8080</string>
     <!-- HTTP proxy settings. The exclusion list label. -->
-    <string name="proxy_exclusionlist_label">Bypass proxy for</string>
+    <string name="proxy_exclusionlist_label">Bypass Proxy for</string>
     <!-- HTTP proxy settings. The hint text for proxy exclusion list. [CHAR LIMIT=50]-->
     <string name="proxy_exclusionlist_hint">example.com,mycomp.test.com,localhost</string>
     <!-- HTTP proxy settings. The button to restore the defaults. -->
-    <string name="proxy_defaultView_text">Restore defaults</string>
+    <string name="proxy_defaultView_text">Restore Defaults</string>
     <!-- HTTP proxy settings. The button to save. -->
     <string name="proxy_action_text">Done</string>
     <!-- HTTP proxy settings. The text field for the hostname -->
@@ -549,9 +549,9 @@
     <!-- The title of the activity to see phone info -->
     <string name="phone_info_label" product="default">Phone info</string>
     <!-- The title of the activity to adjust SD card settings [CHAR LIMIT=25] -->
-    <string name="sd_card_settings_label" product="nosdcard">USB storage</string>
+    <string name="sd_card_settings_label" product="nosdcard">USB Storage</string>
     <!-- The title of the activity to adjust SD card settings-->
-    <string name="sd_card_settings_label" product="default">SD card</string>
+    <string name="sd_card_settings_label" product="default">SD Card</string>
     <!-- The title of the activity to adjust proxy settings -->
     <string name="proxy_settings_label">Proxy settings</string>
 
@@ -813,27 +813,27 @@
     <!-- Title for preference that disables unlock security [CHAR LIMIT=22] -->
     <string name="unlock_set_unlock_none_title">Slide</string>
     <!-- Summary for preference that disables unlock security [CHAR LIMIT=45]-->
-    <string name="unlock_set_unlock_none_summary">No security</string>
+    <string name="unlock_set_unlock_none_summary">No Security</string>
 
     <!-- Title for preference that guides the user through a weak biometric lock [CHAR LIMIT=22] -->
     <string name="unlock_set_unlock_biometric_weak_title">Face Unlock</string>
     <!-- Summary for preference that disables unlock security [CHAR LIMIT=45]-->
-    <string name="unlock_set_unlock_biometric_weak_summary">Low security, experimental</string>
+    <string name="unlock_set_unlock_biometric_weak_summary">Low Security, Experimental</string>
 
     <!-- Title for preference that guides the user through creating an unlock pattern [CHAR LIMIT=22]-->
     <string name="unlock_set_unlock_pattern_title">Pattern</string>
     <!-- Summary for preference that guides the user through creating an unlock pattern [CHAR LIMIT=45] -->
-    <string name="unlock_set_unlock_pattern_summary">Medium security</string>
+    <string name="unlock_set_unlock_pattern_summary">Medium Security</string>
 
     <!-- Title for preference that guides the user through creating an unlock PIN (Personal Identification Number) [CHAR LIMIT=22] -->
     <string name="unlock_set_unlock_pin_title">PIN</string>
     <!-- Summary for preference that guides the user through creating an unlock PIN (Personal Identification Number) [CHAR LIMIT=45] -->
-    <string name="unlock_set_unlock_pin_summary">Medium to high security</string>
+    <string name="unlock_set_unlock_pin_summary">Medium to High Security</string>
 
     <!-- Title for preference that guides the user through creating an unlock password [CHAR LIMIT=22] -->
     <string name="unlock_set_unlock_password_title">Password</string>
     <!-- Title for preference that guides the user through creating an unlock password [CHAR LIMIT=45] -->
-    <string name="unlock_set_unlock_password_summary">High security</string>
+    <string name="unlock_set_unlock_password_summary">High Security</string>
 
     <!-- Summary for preference that has been disabled by because of the DevicePolicyAdmin, or because device encryption is enabled, or because there are credentials in the credential storage [CHAR LIMIT=50] -->
     <string name="unlock_set_unlock_disabled_summary">Disabled by administrator, encryption policy, or credential storage</string>
@@ -843,7 +843,7 @@
     <!-- Summary for "Configure lockscreen" when security is disabled [CHAR LIMIT=45] -->
     <string name="unlock_set_unlock_mode_none">Slide</string>
     <!-- Summary for "Configure lockscreen" when security biometric weak is enabled [CHAR LIMIT=45] -->
-    <string name="unlock_set_unlock_mode_biometric_weak">Face Unlock</string>
+    <string name="unlock_set_unlock_mode_biometric_weak">FaceLock</string>
     <!-- Summary for "Configure lockscreen" when security pattern is enabled [CHAR LIMIT=45] -->
     <string name="unlock_set_unlock_mode_pattern">Pattern</string>
     <!-- Summary for "Configure lockscreen" when security PIN is enabled [CHAR LIMIT=45] -->
@@ -1663,7 +1663,7 @@
     <!-- Sound & display settings screen, section header for settings related to display -->
     <string name="display_settings">Display</string>
     <!-- Sound & display settings screen, accelerometer-based rotation check box label -->
-    <string name="accelerometer_title">Auto-rotate screen</string>
+    <string name="accelerometer_title">Auto-Rotate Screen</string>
     <!-- Sound & display settings screen, accelerometer-based rotation summary text when check box is selected -->
     <string name="accelerometer_summary_on" product="tablet">Switch orientation automatically when rotating tablet</string>
     <!-- Sound & display settings screen, accelerometer-based rotation summary text when check box is selected -->
@@ -1683,7 +1683,7 @@
     <!-- Wallpaper settings title [CHAR LIMIT=30] -->
     <string name="wallpaper_settings_title">Wallpaper</string>
     <!-- Wallpaper settings fragment title [CHAR LIMIT=30] -->
-    <string name="wallpaper_settings_fragment_title">Choose wallpaper from</string>
+    <string name="wallpaper_settings_fragment_title">Choose Wallpaper from</string>
     <!-- Display settings screen, trigger for screen saver options -->
     <string name="screensaver_settings_title">Screen Candy</string>
     <!-- Display settings screen, summary for screen saver options, screen saver is turned on -->
@@ -1713,44 +1713,44 @@
     <string name="dialog_title_font_size">Font size</string>
 
     <!-- SIM lock settings title -->
-    <string name="sim_lock_settings">SIM card lock settings</string>
+    <string name="sim_lock_settings">SIM Card Lock Settings</string>
     <!-- Security & location settings screen, setting option name -->
-    <string name="sim_lock_settings_category">Set up SIM card lock</string>
+    <string name="sim_lock_settings_category">Set up SIM Card Lock</string>
     <!-- Security & location settings screen, section heading for settings related to sim card locking -->
-    <string name="sim_lock_settings_title">SIM card lock</string>
+    <string name="sim_lock_settings_title">SIM Card Lock</string>
     <!-- SIM card lock settings screen, setting check box label -->
-    <string name="sim_pin_toggle">Lock SIM card</string>
+    <string name="sim_pin_toggle">Lock SIM Card</string>
     <!-- SIM card lock settings screen, setting option summary text when SIM lock check box is selected -->
-    <string name="sim_lock_on" product="tablet">Require PIN to use tablet</string>
+    <string name="sim_lock_on" product="tablet">Require PIN to use Tablet</string>
     <!-- SIM card lock settings screen, setting option summary text when SIM lock check box is selected -->
-    <string name="sim_lock_on" product="default">Require PIN to use phone</string>
+    <string name="sim_lock_on" product="default">Require PIN to use Phone</string>
     <!-- SIM card lock settings screen, setting option summary text when SIM lock check box is clear -->
-    <string name="sim_lock_off" product="tablet">Require PIN to use tablet</string>
+    <string name="sim_lock_off" product="tablet">Require PIN to use Tablet</string>
     <!-- SIM card lock settings screen, setting option summary text when SIM lock check box is clear -->
-    <string name="sim_lock_off" product="default">Require PIN to use phone</string>
+    <string name="sim_lock_off" product="default">Require PIN to use Phone</string>
     <!-- SIM card lock settings screen, setting option name to change the SIM PIN -->
     <string name="sim_pin_change">Change SIM PIN</string>
     <!-- SIM card lock settings screen, SIM PIN dialog message instruction -->
     <string name="sim_enter_pin">SIM PIN</string>
     <!-- SIM card lock settings screen, SIM PIN dialog message instruction -->
-    <string name="sim_enable_sim_lock">Lock SIM card</string>
+    <string name="sim_enable_sim_lock">Lock SIM Card</string>
     <!-- SIM card lock settings screen, SIM PIN dialog message instruction -->
-    <string name="sim_disable_sim_lock">Unlock SIM card</string>
+    <string name="sim_disable_sim_lock">Unlock SIM Card</string>
     <!-- SIM card lock settings screen, SIM PIN dialog message instruction -->
     <string name="sim_enter_old">Old SIM PIN</string>
     <!-- SIM card lock settings screen, SIM PIN dialog message instruction -->
     <string name="sim_enter_new">New SIM PIN</string>
-    <string name="sim_reenter_new">Re-type new PIN</string>
+    <string name="sim_reenter_new">Re-Type New PIN</string>
     <!-- SIM card lock settings screen, SIM PIN dialog message instruction -->
     <string name="sim_change_pin">SIM PIN</string>
     <!-- SIM card lock settings screen, SIM PIN dialog message when wrong PIN is entered -->
     <string name="sim_bad_pin">Incorrect PIN</string>
     <!-- SIM card lock settings screen, SIM PIN dialog message when PINs don't match -->
-    <string name="sim_pins_dont_match">PINs don\'t match</string>
+    <string name="sim_pins_dont_match">PINs don\'t Match</string>
     <!-- SIM card lock settings screen, toast after not entering correct SIM PIN -->
-    <string name="sim_change_failed">Can\'t change PIN.\nPossibly incorrect PIN.</string>
+    <string name="sim_change_failed">Can\'t Change PIN.\nPossibly Incorrect PIN.</string>
     <!-- SIM card lock settings screen, SIM PIN dialog message when the entered PIN is correct-->
-    <string name="sim_change_succeeded">SIM PIN changed successfully</string>
+    <string name="sim_change_succeeded">SIM PIN Changed Successfully</string>
     <!-- SIM card lock settings screen, toast after not entering correct SIM PIN -->
     <string name="sim_lock_failed">Can\'t change SIM card lock state.\nPossibly incorrect PIN.</string>
     <!-- SIM card lock settings screen, SIM PIN dialog button labels: -->
@@ -1759,30 +1759,30 @@
     <string name="sim_enter_cancel">Cancel</string>
 
     <!-- Advanced (used for diagnostics) device info activity title -->
-    <string name="device_info_settings" product="tablet">Tablet status</string>
+    <string name="device_info_settings" product="tablet">Tablet Status</string>
     <!-- Advanced (used for diagnostics) device info activity title -->
-    <string name="device_info_settings" product="default">Phone status</string>
+    <string name="device_info_settings" product="default">Phone Status</string>
 
     <!-- About device screen, list item title. Takes the user to the screen for seeing and installing system updates. -->
-    <string name="system_update_settings_list_item_title">System updates</string>
+    <string name="system_update_settings_list_item_title">System Updates</string>
     <!-- About device screen, list item summary. Takes the user to the screen for seeing and installing system updates. -->
     <string name="system_update_settings_list_item_summary">""</string>
 
     <!-- About phone screen, status item label -->
-    <string name="firmware_version">Android version</string>
+    <string name="firmware_version">Android Version</string>
     <!-- About phone screen, status item label-->
-    <string name="model_number">Model number</string>
+    <string name="model_number">Model Number</string>
     <!-- About phone screen, fcc equipment id label-->
     <string name="fcc_equipment_id">Equipment ID</string>
     <!-- About phone screen,  setting option name-->
-    <string name="baseband_version">Baseband version</string>
+    <string name="baseband_version">Baseband Version</string>
     <!-- About phone screen,  setting option name-->
-    <string name="kernel_version">Kernel version</string>
+    <string name="kernel_version">Kernel Version</string>
     <!-- About phone screen,  setting option name-->
-    <string name="build_number">Build number</string>
+    <string name="build_number">Build Number</string>
 
     <!-- About phone screen, show when a value of some status item is unavailable. -->
-    <string name="device_info_not_available">Not available</string>
+    <string name="device_info_not_available">Not Available</string>
     <!-- About phone screen, phone status screen title -->
     <string name="device_status_activity_title">Status</string>
     <!-- About phone screen, title of the item to go into the Phone status screen -->
@@ -1794,7 +1794,7 @@
     <!-- Main settings screen item's title to go into the storage settings screen [CHAR LIMIT=25] -->
     <string name="storage_settings" >Storage</string>
     <!-- Storage settings screen title -->
-    <string name="storage_settings_title">Storage settings</string>
+    <string name="storage_settings_title">Storage Settings</string>
     <!-- [CHAR LIMIT=100] Main settings screen item's summary for the SD card and storage settings -->
     <string name="storage_settings_summary" product="nosdcard">Unmount USB storage, view available storage</string>
     <!-- [CHAR LIMIT=100] Main settings screen item's summary for the SD card and storage settings -->
@@ -1818,39 +1818,39 @@
     <!-- About phone, status item title.  The ICCID of the current LTE device. [CHAR LIMIT=30] -->
     <string name="status_icc_id">ICCID</string>
     <!-- About phone, status item title for the type of data phone network we're connected to, for example 3G or Edge or GPRS -->
-    <string name="status_network_type">Mobile network type</string>
+    <string name="status_network_type">Mobile Network Type</string>
     <!-- About phone, status item title. The status of data access.  For example, the value may be "Connected" -->
-    <string name="status_data_state">Mobile network state</string>
+    <string name="status_data_state">Mobile Network State</string>
     <!-- About phone, status item title. The status of whether we have service.  for example, the value may be "In service" -->
-    <string name="status_service_state">Service state</string>
+    <string name="status_service_state">Service State</string>
     <!-- About phone, status item title. The  current cell tower signal strength -->
-    <string name="status_signal_strength">Signal strength</string>
+    <string name="status_signal_strength">Signal Strength</string>
     <!-- About phone, status item title, The status for roaming.  For example, the value might be "Not roaming" -->
     <string name="status_roaming">Roaming</string>
     <!-- About phone, status item title. The cell carrier that the user is connected to.  -->
     <string name="status_operator">Network</string>
     <!-- About phone, status item title.  The MAC address of the Wi-Fi network adapter. -->
-    <string name="status_wifi_mac_address">Wi-Fi MAC address</string>
+    <string name="status_wifi_mac_address">Wi-Fi MAC Address</string>
     <!-- About phone, status item title.  The bluetooth adapter's hardware address-->
-    <string name="status_bt_address">Bluetooth address</string>
+    <string name="status_bt_address">Bluetooth Address</string>
     <!-- About phone, status item title.  The hardware serial number. [CHAR LIMIT=30]-->
-    <string name="status_serial_number">Serial number</string>
+    <string name="status_serial_number">Serial Number</string>
     <!-- About phone, status item value if the actual value is not available. -->
     <string name="status_unavailable">Unavailable</string>
     <!-- About phone, status item title.  How long the device has been running since its last reboot. -->
-    <string name="status_up_time">Up time</string>
+    <string name="status_up_time">Up Time</string>
     <!-- About phone, status item title.  How much time the device has had its main CPU awake. -->
-    <string name="status_awake_time">Awake time</string>
+    <string name="status_awake_time">Awake Time</string>
     <!-- SD card & phone storage settings screen heading. This is displayed above items that pertain to the phone's internal storage  -->
-    <string name="internal_memory">Internal storage</string>
+    <string name="internal_memory">Internal Storage</string>
     <!-- SD card & phone storage settings screen heading. This is displayed above items that pertain to the SD card [CHAR LIMIT=30] -->
-    <string name="sd_memory" product="nosdcard">USB storage</string>
+    <string name="sd_memory" product="nosdcard">USB Storage</string>
     <!-- SD card & phone storage settings screen heading. This is displayed above items that pertain to the SD card -->
-    <string name="sd_memory" product="default">SD card</string>
+    <string name="sd_memory" product="default">SD Card</string>
     <!-- SD card & phone storage settings title. The amount of free space for some storage partition.  For example, this is listed under both the "Internal phone storage" section and the "SD card" section. -->
     <string name="memory_available">Available</string>
     <!-- SD card & phone storage settings screen heading.  The total amount of storage space for some storage partition.  For example, this is listed under both the "Internal phone storage" section and the "SD card" section -->
-    <string name="memory_size">Total space</string>
+    <string name="memory_size">Total Space</string>
     <!-- SD card & phone storage settings summary. Displayed when the total memory usage is being calculated. Will be replaced with a number like "12.3 GB" when finished calucating. [CHAR LIMIT=30] -->
     <string name="memory_calculating_size">Calculating\u2026</string>
     <!-- SD card & phone storage settings title. Displayed as a title when showing the total usage of applications installed. Below it will be a number like "123.4 MB" indicating used storage. [CHAR LIMIT=50] -->
@@ -1912,13 +1912,13 @@
     <!-- SD card eject error dialog title   -->
     <string name="dlg_error_unmount_title" product="default"></string>
     <!-- SD card eject error dialog text   [CHAR LIMIT=NONE] -->
-    <string name="dlg_error_unmount_text" product="nosdcard">Couldn\'t unmount USB storage. Try again later.</string>
+    <string name="dlg_error_unmount_text" product="nosdcard">Couldn\'t Unmount USB Storage. Try again later.</string>
     <!-- SD card eject error dialog text   -->
-    <string name="dlg_error_unmount_text" product="default">Couldn\'t unmount SD card. Try again later.</string>
+    <string name="dlg_error_unmount_text" product="default">Couldn\'t Unmount SD Card. Try again later.</string>
     <!-- SD card unmount informative text   [CHAR LIMIT=NONE] -->
-    <string name="unmount_inform_text" product="nosdcard">USB storage will be unmounted.</string>
+    <string name="unmount_inform_text" product="nosdcard">USB Storage will be Unmounted.</string>
     <!-- SD card unmount informative text   [CHAR LIMIT=NONE] -->
-    <string name="unmount_inform_text" product="default">SD card will be unmounted.</string>
+    <string name="unmount_inform_text" product="default">SD Card will be Unmounted.</string>
     <!-- SD card eject progress title   -->
     <string name="sd_ejecting_title">Unmounting</string>
     <!-- SD card eject progress text   -->
@@ -2054,9 +2054,9 @@
     <!-- SD card & phone storage settings screen, label for check box to erase SD card [CHAR LIMIT=30] -->
     <string name="erase_external_storage" product="default">Erase SD card</string>
     <!-- SD card & phone storage settings screen, description for check box to erase USB storage [CHAR LIMIT=NONE] -->
-    <string name="erase_external_storage_description" product="nosdcard">Erase all the data on the internal USB storage, such as music or photos</string>
+    <string name="erase_external_storage_description" product="nosdcard">Erase ALL the data on the internal USB storage, such as music or photos</string>
     <!-- SD card & phone storage settings screen, description for check box to erase USB storage [CHAR LIMIT=NONE] -->
-    <string name="erase_external_storage_description" product="default">Erase all the data on the SD card, such as music or photos</string>
+    <string name="erase_external_storage_description" product="default">Erase ALL the data on the SD card, such as Music or Photos</string>
     <!-- SD card & phone storage settings screen, button on screen after user selects Factory data reset -->
     <string name="master_clear_button_text" product="tablet">Reset tablet</string>
     <!-- SD card & phone storage settings screen, button on screen after user selects Factory data reset -->
@@ -2751,9 +2751,9 @@
     <!-- User dictionary settings. The title of the screen to add/edit a new word to the user dictionary; it describes the phrase that will be added to the user dictionary. [CHAR LIMIT=25] -->
     <string name="user_dict_settings_add_screen_title">Phrase</string>
     <!-- User dictionary settings. Text on the dialog button to pop more options for adding a word. [CHAR LIMIT=16] -->
-    <string name="user_dict_settings_add_dialog_more_options">More options</string>
+    <string name="user_dict_settings_add_dialog_more_options">More Options</string>
     <!-- User dictionary settings. Text on the dialog button mask advanced options. [CHAR LIMIT=15] -->
-    <string name="user_dict_settings_add_dialog_less_options">Less options</string>
+    <string name="user_dict_settings_add_dialog_less_options">Less Options</string>
     <!-- User dictionary settings. Text on the dialog button to confirm adding a word. [CHAR LIMIT=15] -->
     <string name="user_dict_settings_add_dialog_confirm">OK</string>
     <!-- User dictionary settings. Label to put before the word field (that's the word that will actually be added to the user dictionary when OK is pressed). [CHAR LIMIT=20] -->
@@ -2763,7 +2763,7 @@
     <!-- User dictionary settings. Label to put before the language field. [CHAR LIMIT=20] -->
     <string name="user_dict_settings_add_locale_option_name">Language:</string>
     <!-- User dictionary settings. The title of the dialog to edit an existing word in the user dictionary. -->
-    <string name="user_dict_settings_edit_dialog_title">Edit word</string>
+    <string name="user_dict_settings_edit_dialog_title">Edit Word</string>
     <!-- User dictionary settings. The title of the context menu item to edit the current word -->
     <string name="user_dict_settings_context_menu_edit_title">Edit</string>
     <!-- User dictionary settings. The title of the context menu item to delete the current word -->
@@ -2778,11 +2778,11 @@
     <!-- This is for diagnostics screen. The title of a screen with various items realted to launching screens that will giev the user info. For example, it contains "Phone information" and "Battery information" -->
     <string name="testing">Testing</string>
     <!-- In the Testing screen.  The item title of the activity that shows a bunch of phone-related information.  -->
-    <string name="testing_phone_info" product="tablet">Tablet information</string>
+    <string name="testing_phone_info" product="tablet">Tablet Information</string>
     <!-- In the Testing screen.  The item title of the activity that shows a bunch of phone-related information.  -->
-    <string name="testing_phone_info" product="default">Phone information</string>
+    <string name="testing_phone_info" product="default">Phone Information</string>
     <!-- In the Testing screen. The item title of the activity that shows a bunch of battery-related information.  -->
-    <string name="testing_battery_info">Battery information</string>
+    <string name="testing_battery_info">Battery Information</string>
     <!-- Do not translate. In the Testing screen. The item title of the activity that shows a bunch of SIM-related operations.  -->
     <string name="testing_sim_toolkit">SIM toolkit</string>
 
@@ -2886,21 +2886,21 @@
     <!-- Title for the screen that lets the user choose a gadget to add to the home screen
          (or other screens that can host gadgets).  Note to translators: we're still determining
          the final name for Gadgets/Widgets, so please translate both for now. -->
-    <string name="gadget_picker_title">Choose gadget</string>
+    <string name="gadget_picker_title">Choose Gadget</string>
 
     <!-- Title for the screen that lets the user choose a widget to add to the home screen
          (or other screens that can host widgets).  Note to translators: we're still determining
          the final name for Gadgets/Widgets, so please translate both for now. -->
-    <string name="widget_picker_title">Choose widget</string>
+    <string name="widget_picker_title">Choose Widget</string>
 
     <!-- Title in dialog that pops up when an app requests permission to bind a widget [CHAR LIMIT=NONE] -->
-    <string name="allow_bind_app_widget_activity_allow_bind_title">Create widget and allow access?</string>
+    <string name="allow_bind_app_widget_activity_allow_bind_title">Create Widget and allow access?</string>
 
     <!-- Message in dialog that pops up when an app requests permission to bind a widget [CHAR LIMIT=NONE] -->
-    <string name="allow_bind_app_widget_activity_allow_bind">After you create the widget, <xliff:g id="widget_host_name">%1$s</xliff:g> can access all data it displays.</string>
+    <string name="allow_bind_app_widget_activity_allow_bind">After you create the Widget, <xliff:g id="widget_host_name">%1$s</xliff:g> can access all data it displays.</string>
 
     <!-- Text for checkbox that pops up when an app requests permission to bind a widget [CHAR LIMIT=NONE] -->
-    <string name="allow_bind_app_widget_activity_always_allow_bind">Always allow <xliff:g id="widget_host_name">%1$s</xliff:g> to create widgets and access their data</string>
+    <string name="allow_bind_app_widget_activity_always_allow_bind">Always allow <xliff:g id="widget_host_name">%1$s</xliff:g> to create Widgets and access their data</string>
 
     <!-- Used to show an amount of time in the form "d days, h hours, m minutes, s seconds" in BatteryHistory -->
     <string name="battery_history_days"><xliff:g id="days">%1$d</xliff:g>d <xliff:g id="hours">%2$d</xliff:g>h <xliff:g id="minutes">%3$d</xliff:g>m <xliff:g id="seconds">%4$d</xliff:g>s</string>
@@ -2915,10 +2915,10 @@
     <string name="battery_history_seconds"><xliff:g id="seconds">%1$d</xliff:g>s</string>
 
     <!-- XXX remove? Strings used for displaying usage statistics -->
-    <string name="usage_stats_label">Usage statistics</string>
+    <string name="usage_stats_label">Usage Statistics</string>
 
     <!-- In the Testing screen. The item title of the activity that shows usage statistics.  -->
-    <string name="testing_usage_stats">Usage statistics</string>
+    <string name="testing_usage_stats">Usage Statistics</string>
     <!-- label for text to indicate sort options -->
     <string name="display_order_text">Sort by:</string>
     <!-- label for application name -->
@@ -2926,7 +2926,7 @@
     <!-- label for launch count -->
     <string name="launch_count_label">Count</string>
     <!-- label for usage time -->
-    <string name="usage_time_label">Usage time</string>
+    <string name="usage_time_label">Usage Time</string>
 
     <!-- Accessibility settings -->
     <skip />
@@ -2942,9 +2942,9 @@
     <!-- Title for the accessibility preference category of system related preferences. [CHAR LIMIT=25] -->
     <string name="accessibility_system_title">System</string>
     <!-- Title for the accessibility preference to enable large text. [CHAR LIMIT=35] -->
-    <string name="accessibility_toggle_large_text_title">Large text</string>
+    <string name="accessibility_toggle_large_text_title">Large Text</string>
     <!-- Title for the accessibility preference to power button to end a call. [CHAR LIMIT=35] -->
-    <string name="accessibility_power_button_ends_call_title">Power button ends call</string>
+    <string name="accessibility_power_button_ends_call_title">Power Button ends call</string>
     <!-- Title for the accessibility preference to speak passwords. [CHAR LIMIT=35] -->
     <string name="accessibility_speak_password_title">Speak passwords</string>
     <!-- Title for accessibility preference to choose long-press delay i.e. timeout before it is detected. [CHAR LIMIT=35] -->
@@ -2963,12 +2963,12 @@
     <!-- Summary for the allowed state of script injection. [CHAR LIMIT=15] -->
     <string name="accessibility_script_injection_allowed">Allowed</string>
     <!-- Summary for the disallowed state of script injection. [CHAR LIMIT=15] -->
-    <string name="accessibility_script_injection_disallowed">Not allowed</string>
+    <string name="accessibility_script_injection_disallowed">Not Allowed</string>
 
     <!-- Title for the dialog button to allow script injection. [CHAR LIMIT=15] -->
     <string name="accessibility_script_injection_button_allow">Allow</string>
     <!-- Title for the dialog button to disallow script injection. [CHAR LIMIT=15] -->
-    <string name="accessibility_script_injection_button_disallow">Don\'t allow</string>
+    <string name="accessibility_script_injection_button_disallow">Don\'t Allow</string>
 
      <!-- Title for a warning message about security implications of enabling an accessibility service,
          displayed as a dialog message when the user selects to enable an accessibility service (tablet). [CHAR LIMIT=NONE] -->
@@ -3025,7 +3025,7 @@
     <!-- Activity title for App Fuel Gauge summary -->
     <string name="power_usage_summary_title">Battery</string>
     <!-- Activity title summary for App Fuel Gauge summary -->
-    <string name="power_usage_summary">What has been using the battery</string>
+    <string name="power_usage_summary">What has been using the Battery</string>
     <!-- Message to show when battery usage data is not available [CHAR LIMIT=30] -->
     <string name="power_usage_not_available">Battery usage data isn\'t available.</string>
     <!-- Display the battery level and status [CHAR_LIMIT=30] -->
