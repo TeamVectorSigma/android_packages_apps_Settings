@@ -31,11 +31,11 @@
     <!-- Settings main menu category heading. Wireless and networks (Wi-Fi, Bluetooth, data usage...). [CHAR LIMIT=40] -->
     <string name="header_category_wireless_networks">WIRELESS &amp; NETWORKS</string>
     <!-- Settings main menu category heading. Device (Sound, display, battery, applications...). [CHAR LIMIT=40] -->
-    <string name="header_category_device">CUSTOMIZE DEVICE</string>
+    <string name="header_category_device">PERSONALIZE DEVICE</string>
     <!-- Settings main menu category heading. Personal (Accounts, security, language, backup...). [CHAR LIMIT=40] -->
-    <string name="header_category_personal">PERSONALIZE DEVICE</string>
+    <string name="header_category_personal">INTERACTIVE PROPERTIES </string>
     <!-- Settings main menu category heading. System (Updates, data, accessibility, about phone). [CHAR LIMIT=40] -->
-    <string name="header_category_system">THE SYSTEM</string>
+    <string name="header_category_system">SYSTEM PROPERTIES</string>
 
     <!-- Phone info -->
     <!-- Phone Info screen. Button label to turn on the radio . Only shown in diagnostic screen, so precise translation is not needed. -->
@@ -1242,6 +1242,8 @@
     <string name="wifi_setup_wps">Automatic setup (WPS)</string>
 
     <!-- Dialog for Access Points --> <skip />
+	    <!-- Label for automatically_connect -->
+    <string name="wifi_auto_connect">Automatically Connect</string>
     <!-- Label to show/hide advanced options -->
     <string name="wifi_show_advanced">Show advanced options</string>
     <!-- Title for the WPS setup dialog [CHAR LIMIT=50] -->
