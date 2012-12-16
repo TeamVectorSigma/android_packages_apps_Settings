@@ -70,7 +70,7 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
     private static final int SELECT_ACTIVITY = 4;
     private static final int SELECT_WALLPAPER = 5;
 
-    private static final String WALLPAPER_NAME = "notification_wallpaper.png";
+    private static final String WALLPAPER_NAME = "notification_wallpaper.jpg";
 
     Preference mNotificationWallpaper;
     Preference mWallpaperAlpha;
@@ -112,7 +112,7 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
 
         mLcdDensity.setSummary(getResources().getString(R.string.current_lcd_density) + currentProperty);
 
-        customnavTemp = new File(getActivity().getFilesDir()+"notification_wallpaper.png");
+        customnavTemp = new File(getActivity().getFilesDir()+"notification_wallpaper.jpg");
 
         mCustomLabel = findPreference(PREF_CUSTOM_CARRIER_LABEL);
         updateCustomLabelTextSummary();
