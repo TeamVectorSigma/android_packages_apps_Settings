@@ -78,6 +78,7 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
     private static final int SELECT_WALLPAPER = 5;
 
     private static final String WALLPAPER_NAME = "notification_wallpaper.png";
+
     CheckBoxPreference mDisableBootAnimation;
     Preference mNotificationWallpaper;
     Preference mCustomBootAnimation;
@@ -304,6 +305,7 @@ mDisableBootAudio = (CheckBoxPreference)findPreference("disable_bootaudio");
             Settings.System.putBoolean(mContext.getContentResolver(),
                     Settings.System.MODE_TABLET_UI,
                     ((CheckBoxPreference) preference).isChecked());
+            return true;
         } else if (preference == mCustomBootAnimation) {
             PackageManager packageManager = getActivity().getPackageManager();
             Intent test = new Intent(Intent.ACTION_GET_CONTENT);
@@ -520,6 +522,7 @@ mDisableBootAudio = (CheckBoxPreference)findPreference("disable_bootaudio");
 
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, wallpaperStream);
                 Helpers.restartSystemUI();
+            return true;
             } else if (requestCode == REQUEST_PICK_BOOT_ANIMATION) {
                 if (data==null) {
                     //Nothing returned by user, probably pressed back button in file manager
