@@ -2179,6 +2179,18 @@
         <item>0</item>
     </string-array>
 
-    <!-- **** EXTRA EDITS END **** -->
-
+    <!-- **** EXTRA EDITS FROM AOKP **** -->
+    <!-- boot animation stuff -->
+    <string-array name="disable_bootanimation_insults" translatable="false">
+        <item>@string/insult_jerk</item>
+        <item>@string/insult_protekk</item>
+        <item>@string/insult_unicorns</item>
+    </string-array>
+    <!-- boot audio stuff -->
+    <string-array name="disable_bootaudio_insults">
+        <item>Blame xoomdev</item>
+        <item>Blame Khasmek</item>
+        <item>Blame Protekk</item>
+        <item>Blame Roman</item>
+    </string-array>
 </resources>

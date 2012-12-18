@@ -16,6 +16,8 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -67,12 +69,15 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
 
     private static final int REQUEST_PICK_WALLPAPER = 201;
     private static final int REQUEST_PICK_CUSTOM_ICON = 202;
+    private static final int REQUEST_PICK_BOOT_ANIMATION = 203;
+    private static final int REQUEST_PICK_BOOT_AUDIO = 204;
     private static final int SELECT_ACTIVITY = 4;
     private static final int SELECT_WALLPAPER = 5;
 
     private static final String WALLPAPER_NAME = "notification_wallpaper.png";
-
+    CheckBoxPreference mDisableBootAnimation;
     Preference mNotificationWallpaper;
+    Preference mCustomBootAnimation;
     Preference mWallpaperAlpha;
     Preference mCustomLabel;
     CheckBoxPreference mStatusBarImeSwitcher;
@@ -82,9 +87,12 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
     CheckBoxPreference mAlarm;
     CheckBoxPreference mTabletui;
     Preference mLcdDensity;
+    Preference mCustomBootAudio;
+    CheckBoxPreference mDisableBootAudio;
 
     Random randomGenerator = new Random();
 
+    private String bootAniPath;
     private File customnavTemp;
 
     private int seekbarProgress;
@@ -101,7 +109,31 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
         addPreferencesFromResource(R.xml.user_interface_settings);
 
         PreferenceScreen prefs = getPreferenceScreen();
+        mInsults = mContext.getResources().getStringArray(
+                R.array.disable_bootanimation_insults);
 
+        mDisableBootAnimation = (CheckBoxPreference)findPreference("disable_bootanimation");
+        mDisableBootAnimation.setChecked(!new File("/system/media/bootanimation.zip").exists());
+        if (mDisableBootAnimation.isChecked()) {
+            Resources res = mContext.getResources();
+            String[] insults = res.getStringArray(R.array.disable_bootanimation_insults);
+            int randomInt = randomGenerator.nextInt(insults.length);
+            mDisableBootAnimation.setSummary(insults[randomInt]);
+        }
+
+        mCustomBootAnimation = findPreference("custom_bootanimation");
+
+
+        mDisableBootAudio = (CheckBoxPreference)findPreference("disable_bootaudio");
+        mDisableBootAudio.setChecked(!new File("/system/media/boot_audio.mp3").exists());
+        if (mDisableBootAudio.isChecked()) {
+            Resources res = mContext.getResources();
+            String[] insults = res.getStringArray(R.array.disable_bootaudio_insults);
+            int randomInt = randomGenerator.nextInt(insults.length);
+            mDisableBootAudio.setSummary(insults[randomInt]);
+        }
+
+        mCustomBootAudio = findPreference("custom_bootaudio");
         mLcdDensity = findPreference("lcd_density_setup");
         String currentProperty = SystemProperties.get("ro.sf.lcd_density");
         try {
@@ -111,6 +143,18 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
         }
 
         mLcdDensity.setSummary(getResources().getString(R.string.current_lcd_density) + currentProperty);
+
+        mCustomBootAnimation = findPreference("custom_bootanimation");
+mDisableBootAudio = (CheckBoxPreference)findPreference("disable_bootaudio");
+        mDisableBootAudio.setChecked(!new File("/system/media/boot_audio.mp3").exists());
+        if (mDisableBootAudio.isChecked()) {
+            Resources res = mContext.getResources();
+            String[] insults = res.getStringArray(R.array.disable_bootaudio_insults);
+            int randomInt = randomGenerator.nextInt(insults.length);
+            mDisableBootAudio.setSummary(insults[randomInt]);
+        }
+
+        mCustomBootAudio = findPreference("custom_bootaudio");
 
         customnavTemp = new File(getActivity().getFilesDir()+"notification_wallpaper.png");
 
@@ -203,6 +247,50 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
                     Settings.System.RECENT_KILL_ALL_BUTTON, checked ? 1 : 0);
             Helpers.restartSystemUI();
             return true;
+        } else if (preference == mDisableBootAnimation) {
+            CMDProcessor term = new CMDProcessor();
+            if (!term.su.runWaitFor(
+                    "grep -q \"debug.sf.nobootanimation\" /system/build.prop")
+                    .success()) {
+                // if not add value
+                Helpers.getMount("rw");
+                new CMDProcessor().su
+                        .runWaitFor("mv /system/media/bootanimation.zip /system/media/bootanimation.backup");
+                term.su.runWaitFor("echo debug.sf.nobootanimation="
+                    + String.valueOf(mDisableBootAnimation.isChecked() ? 1 : 0)
+                    + " >> /system/build.prop");
+                Helpers.getMount("ro");
+                Resources res = mContext.getResources();
+                String[] insults = res.getStringArray(R.array.disable_bootanimation_insults);
+                int randomInt = randomGenerator.nextInt(insults.length);
+                preference.setSummary(insults[randomInt]);
+            } else {
+                Helpers.getMount("rw");
+                new CMDProcessor().su
+                        .runWaitFor("mv /system/media/bootanimation.backup /system/media/bootanimation.zip");
+                Helpers.getMount("ro");
+                preference.setSummary("");
+            }
+            // preform bootanimation operations off UI thread
+            AbstractAsyncSuCMDProcessor processor = new AbstractAsyncSuCMDProcessor(true) {
+                @Override
+                protected void onPostExecute(String result) {
+                    if (mDisableBootAnimation.isChecked()) {
+                        // do not show same insult as last time
+                        int newInsult = randomGenerator.nextInt(mInsults.length);
+                        while (newInsult == mLastRandomInsultIndex)
+                            newInsult = randomGenerator.nextInt(mInsults.length);
+
+                        // update our static index reference
+                        mLastRandomInsultIndex = newInsult;
+                        preference.setSummary(mInsults[newInsult]);
+                    } else {
+                        preference.setSummary("");
+                    }
+                }
+            };
+            processor.execute(getBootAnimationCommand(mDisableBootAnimation.isChecked()));
+            return true;
         } else if (preference == mKillAppLongpressBack) {
             writeKillAppLongpressBackOptions();
         } else if (preference == mAlarm) {
@@ -213,6 +301,52 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
             Settings.System.putBoolean(mContext.getContentResolver(),
                     Settings.System.MODE_TABLET_UI,
                     ((CheckBoxPreference) preference).isChecked());
+        } else if (preference == mCustomBootAnimation) {
+            PackageManager packageManager = getActivity().getPackageManager();
+            Intent test = new Intent(Intent.ACTION_GET_CONTENT);
+            test.setType("file/*");
+            List<ResolveInfo> list = packageManager.queryIntentActivities(test, PackageManager.GET_ACTIVITIES);
+            if(list.size() > 0) {
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT, null);
+                intent.setType("file/*");
+                startActivityForResult(intent, REQUEST_PICK_BOOT_ANIMATION);
+            } else {
+                //No app installed to handle the intent - file explorer required
+                Toast.makeText(mContext, R.string.install_file_manager_error, Toast.LENGTH_SHORT).show();
+            }
+            return true;
+        } else if (preference == mDisableBootAudio) {
+            boolean checked = ((CheckBoxPreference) preference).isChecked();
+            if (checked) {
+                Helpers.getMount("rw");
+                new CMDProcessor().su
+                        .runWaitFor("mv /system/media/blaster.mp3 /system/media/boot_audio.backup");
+                Helpers.getMount("ro");
+                Resources res = mContext.getResources();
+                String[] insults = res.getStringArray(R.array.disable_bootaudio_insults);
+                int randomInt = randomGenerator.nextInt(insults.length);
+                preference.setSummary(insults[randomInt]);
+            } else {
+                Helpers.getMount("rw");
+                new CMDProcessor().su
+                        .runWaitFor("mv /system/media/boot_audio.backup /system/media/boot_audio.mp3");
+                Helpers.getMount("ro");
+                preference.setSummary("");
+            }
+            return true;
+        } else if (preference == mCustomBootAudio) {
+            PackageManager packageManager = getActivity().getPackageManager();
+            Intent test = new Intent(Intent.ACTION_GET_CONTENT);
+            test.setType("file/*");
+            List<ResolveInfo> list = packageManager.queryIntentActivities(test, PackageManager.GET_ACTIVITIES);
+            if(list.size() > 0) {
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT, null);
+                intent.setType("file/*");
+                startActivityForResult(intent, REQUEST_PICK_BOOT_AUDIO);
+            } else {
+                //No app installed to handle the intent - file explorer required
+                Toast.makeText(mContext, R.string.install_file_manager_error, Toast.LENGTH_SHORT).show();
+            }
             return true;
         } else if (preference == mNotificationWallpaper) {
             Display display = getActivity().getWindowManager().getDefaultDisplay();
@@ -237,6 +371,7 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
             intent.putExtra("outputY", height);
             intent.putExtra("scale", true);
             intent.putExtra("scaleUpIfNeeded", true);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, getNotificationExternalUri());
             intent.putExtra("outputFormat", Bitmap.CompressFormat.PNG.toString());
             try {
                 customnavTemp.createNewFile();
@@ -382,6 +517,93 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
 
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, wallpaperStream);
                 Helpers.restartSystemUI();
+            } else if (requestCode == REQUEST_PICK_BOOT_ANIMATION) {
+                if (data==null) {
+                    //Nothing returned by user, probably pressed back button in file manager
+                    return;
+                }
+
+                bootAniPath = data.getData().getEncodedPath();
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle(R.string.bootanimation_preview);
+                builder.setPositiveButton(R.string.apply, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Helpers.getMount("rw");
+                        //backup old boot animation
+                        new CMDProcessor().su.runWaitFor("mv /system/media/bootanimation.zip /system/media/bootanimation.backup");
+
+                        //Copy new bootanimation, give proper permissions
+                        new CMDProcessor().su.runWaitFor("cp "+ bootAniPath +" /system/media/bootanimation.zip");
+                        new CMDProcessor().su.runWaitFor("chmod 644 /system/media/bootanimation.zip");
+
+                        //Update setting to reflect that boot animation is now enabled
+                        mDisableBootAnimation.setChecked(false);
+
+                Helpers.getMount("ro");
+            } else if (requestCode == REQUEST_PICK_BOOT_AUDIO) {
+                if (data==null) {
+                    //Nothing returned by user, probably pressed back button in file manager
+                    return;
+                }
+                String path = data.getData().getEncodedPath();
+
+                Helpers.getMount("rw");
+                //backup old boot sounds
+                new CMDProcessor().su.runWaitFor("mv /system/media/boot_audio.mp3 /system/media/boot_audio.backup");
+
+                //Copy new bootanimation, give proper permissions
+                new CMDProcessor().su.runWaitFor("cp "+ path +" /system/media/boot_audio.mp3");
+                new CMDProcessor().su.runWaitFor("chmod 644 /system/media/boot_audio.mp3");
+
+                //Update setting to reflect that boot animation is now enabled
+                mDisableBootAnimation.setChecked(false);
+
+                Helpers.getMount("ro");
+
+                        dialog.dismiss();
+                    }
+                });
+                builder.setNegativeButton(com.android.internal.R.string.cancel, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+                LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(getActivity().LAYOUT_INFLATER_SERVICE);
+                View layout = inflater.inflate(R.layout.dialog_bootanimation_preview,
+                        (ViewGroup) getActivity().findViewById(R.id.bootanimation_layout_root));
+
+                error = (TextView) layout.findViewById(R.id.textViewError);
+
+                view = (ImageView) layout.findViewById(R.id.imageViewPreview);
+                view.setVisibility(View.GONE);
+
+                Display display = getActivity().getWindowManager().getDefaultDisplay();
+                Point size = new Point();
+                display.getSize(size);
+
+                view.setLayoutParams(new LinearLayout.LayoutParams(size.x/2, size.y/2));
+
+                error.setText(R.string.creating_preview);
+
+                builder.setView(layout);
+
+                AlertDialog dialog = builder.create();
+
+                dialog.setOwnerActivity(getActivity());
+
+                dialog.show();
+
+                Thread thread = new Thread(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        createPreview(bootAniPath);
+                    }
+                });
+                thread.start();
+
             }
         }
     }
@@ -399,4 +621,159 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
         in.close();
         out.close();
     }
+
+    private void createPreview(String path) {
+        File zip = new File(path);
+
+        ZipFile zipfile = null;
+        String desc = "";
+        try {
+            zipfile = new ZipFile(zip);
+            ZipEntry ze = zipfile.getEntry("desc.txt");
+            InputStream in = zipfile.getInputStream(ze);
+            InputStreamReader is = new InputStreamReader(in);
+            StringBuilder sb = new StringBuilder();
+            BufferedReader br = new BufferedReader(is);
+            String read = br.readLine();
+            while(read != null) {
+                sb.append(read);
+                sb.append("\n");
+                read = br.readLine();
+            }
+            desc = sb.toString();
+            br.close();
+            is.close();
+            in.close();
+
+        } catch (Exception e1) {
+            errormsg = getActivity().getString(R.string.error_reading_zip_file);
+            errorHandler.sendEmptyMessage(0);
+            return;
+        }
+
+        String[] info = desc.replace("\\r", "").split("\\n");
+
+        width = Integer.parseInt(info[0].split(" ")[0]);
+        height = Integer.parseInt(info[0].split(" ")[1]);
+        delay = Integer.parseInt(info[0].split(" ")[2]);
+
+        mPartName1 = info[1].split(" ")[3];
+
+        try {
+            if (info.length > 2) {
+                mPartName2 = info[2].split(" ")[3];
+            }
+            else {
+                mPartName2 = "";
+            }
+        }
+        catch (Exception e)
+        {
+            mPartName2 = "";
+        }
+
+        BitmapFactory.Options opt = new BitmapFactory.Options();
+        opt.inSampleSize = 4;
+
+        mAnimationPart1 = new AnimationDrawable();
+        mAnimationPart2 = new AnimationDrawable();
+
+        try
+        {
+            for (Enumeration<? extends ZipEntry> e = zipfile.entries(); e.hasMoreElements();) {
+                ZipEntry entry = (ZipEntry) e.nextElement();
+                if (entry.isDirectory()) {
+                    continue;
+                }
+                String partname = entry.getName().split("/")[0];
+                if (mPartName1.equalsIgnoreCase(partname)) {
+                    InputStream is = zipfile.getInputStream(entry);
+                    mAnimationPart1.addFrame(new BitmapDrawable(getResources(), BitmapFactory.decodeStream(is, null, opt)), delay);
+                    is.close();
+                }
+                else if (mPartName2.equalsIgnoreCase(partname)) {
+                    InputStream is = zipfile.getInputStream(entry);
+                    mAnimationPart2.addFrame(new BitmapDrawable(getResources(), BitmapFactory.decodeStream(is, null, opt)), delay);
+                    is.close();
+                }
+            }
+        } catch (IOException e1) {
+            errormsg = getActivity().getString(R.string.error_creating_preview);
+            errorHandler.sendEmptyMessage(0);
+            return;
+        }
+
+        if (mPartName2.length() > 0) {
+            Log.d(TAG, "Multipart Animation");
+            mAnimationPart1.setOneShot(false);
+            mAnimationPart2.setOneShot(false);
+
+            mAnimationPart1.setOnAnimationFinishedListener(new AnimationDrawable.OnAnimationFinishedListener() {
+
+                @Override
+                public void onAnimationFinished() {
+                    Log.d(TAG, "First part finished");
+                    view.setImageDrawable(mAnimationPart2);
+                    mAnimationPart1.stop();
+                    mAnimationPart2.start();
+                }
+            });
+
+        }
+        else {
+            mAnimationPart1.setOneShot(false);
+        }
+
+        finishedHandler.sendEmptyMessage(0);
+
+    }
+
+    /**
+     * creates a couple commands to perform all root
+     * operations needed to disable/enable bootanimations
+     *
+     * @param checked state of CheckBox
+     * @return script to turn bootanimations on/off
+     */
+    private String[] getBootAnimationCommand(boolean checked) {
+        String[] cmds = new String[2];
+        String storedLocation = "/system/media/bootanimation.backup";
+        String activeLocation = "/system/media/bootanimation.zip";
+        if (checked) {
+            /* make backup */
+            cmds[0] = "mv " + activeLocation + " " + storedLocation + "; ";
+        } else {
+            /* apply backup */
+            cmds[0] = "mv " + storedLocation + " " + activeLocation + "; ";
+        }
+        /*
+         * use sed to replace build.prop property
+         * debug.sf.nobootanimation=[1|0]
+         *
+         * without we get the Android shine animation when
+         * /system/media/bootanimation.zip is not found
+         */
+        cmds[1] = "busybox sed -i \"/debug.sf.nobootanimation/ c "
+                + "debug.sf.nobootanimation=" + String.valueOf(checked ? 1 : 0)
+                + "\" " + "/system/build.prop";
+        return cmds;
+    }
+
+    private Handler errorHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            view.setVisibility(View.GONE);
+            error.setText(errormsg);
+        }
+    };
+
+    private Handler finishedHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            view.setImageDrawable(mAnimationPart1);
+            view.setVisibility(View.VISIBLE);
+            error.setVisibility(View.GONE);
+            mAnimationPart1.start();
+        }
+    };
 }

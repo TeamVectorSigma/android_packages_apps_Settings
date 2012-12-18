@@ -5052,5 +5052,18 @@
     <string name="custom_density_dialog_button_got">Got it!</string>
     <string name="custom_density_dialog_button_reboot">Reboot now</string>
     
-    <!-- **** EXTRA ADDITIONS END **** -->
+    <!-- **** EXTRA ADDITIONS FROM AOKP **** -->
+    <string name="bootani_cat">Boot Animation</string>
+    <string name="disable_bootanimation_title">Disable boot animation</string>
+    <string name="custom_bootanimation_title">Custom boot animation</string>
+    <string name="custom_bootanimation_summary">Select bootanimation zip from sdcard. Previous bootanimation will be backed up to /system/media.</string>
+    <string name="install_file_manager_error">No application found to pick the zip file. Please install a file manager.</string>
+    <string name="bootanimation_preview">Bootanimation preview</string>
+    <string name="apply">Apply</string>
+    <string name="creating_preview">Creating preview...</string>
+    <string name="error_reading_zip_file">Error reading zip file</string>
+    <string name="error_creating_preview">Error creating preview</string>
+    <string name="disable_bootaudio_title">Disable boot sounds</string>
+    <string name="custom_bootaudio_title">Custom boot sounds</string>
+    <string name="custom_bootaudio_summary">Select mp3 from sdcard. Previous boot sounds will be backed up to /system/media.</string>
 </resources>
