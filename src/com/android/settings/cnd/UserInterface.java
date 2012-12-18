@@ -47,6 +47,7 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
+import android.widget.Toast;
 
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.R;
@@ -523,19 +524,15 @@ mDisableBootAudio = (CheckBoxPreference)findPreference("disable_bootaudio");
                     return;
                 }
 
-                bootAniPath = data.getData().getEncodedPath();
+                String path = data.getData().getEncodedPath();
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle(R.string.bootanimation_preview);
-                builder.setPositiveButton(R.string.apply, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        Helpers.getMount("rw");
-                        //backup old boot animation
-                        new CMDProcessor().su.runWaitFor("mv /system/media/bootanimation.zip /system/media/bootanimation.backup");
+                Helpers.getMount("rw");
+                //backup old boot animation
+                new CMDProcessor().su.runWaitFor("mv /system/media/bootanimation.zip /system/media/bootanimation.backup");
 
-                        //Copy new bootanimation, give proper permissions
-                        new CMDProcessor().su.runWaitFor("cp "+ bootAniPath +" /system/media/bootanimation.zip");
-                        new CMDProcessor().su.runWaitFor("chmod 644 /system/media/bootanimation.zip");
+                //Copy new bootanimation, give proper permissions
+                new CMDProcessor().su.runWaitFor("cp "+ path +" /system/media/bootanimation.zip");
+                new CMDProcessor().su.runWaitFor("chmod 644 /system/media/bootanimation.zip");
 
                         //Update setting to reflect that boot animation is now enabled
                         mDisableBootAnimation.setChecked(false);
@@ -546,6 +543,7 @@ mDisableBootAudio = (CheckBoxPreference)findPreference("disable_bootaudio");
                     //Nothing returned by user, probably pressed back button in file manager
                     return;
                 }
+
                 String path = data.getData().getEncodedPath();
 
                 Helpers.getMount("rw");
