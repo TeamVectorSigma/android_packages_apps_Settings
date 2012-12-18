@@ -606,7 +606,7 @@ mDisableBootAudio = (CheckBoxPreference)findPreference("disable_bootaudio");
 
             }
         }
-    }
+    
 
     public void copy(File src, File dst) throws IOException {
         InputStream in = new FileInputStream(src);
