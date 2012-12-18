@@ -561,7 +561,7 @@ mDisableBootAudio = (CheckBoxPreference)findPreference("disable_bootaudio");
 
                         dialog.dismiss();
                     }
-                });
+                }
                 builder.setNegativeButton(com.android.internal.R.string.cancel, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
