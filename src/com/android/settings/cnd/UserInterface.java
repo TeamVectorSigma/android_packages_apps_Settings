@@ -560,53 +560,9 @@ mDisableBootAudio = (CheckBoxPreference)findPreference("disable_bootaudio");
                 mDisableBootAnimation.setChecked(false);
 
                 Helpers.getMount("ro");
-
-                        dialog.dismiss();
-                    }
-                }
-                builder.setNegativeButton(com.android.internal.R.string.cancel, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-
-                LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(getActivity().LAYOUT_INFLATER_SERVICE);
-                View layout = inflater.inflate(R.layout.dialog_bootanimation_preview,
-                        (ViewGroup) getActivity().findViewById(R.id.bootanimation_layout_root));
-
-                error = (TextView) layout.findViewById(R.id.textViewError);
-
-                view = (ImageView) layout.findViewById(R.id.imageViewPreview);
-                view.setVisibility(View.GONE);
-
-                Display display = getActivity().getWindowManager().getDefaultDisplay();
-                Point size = new Point();
-                display.getSize(size);
-
-                view.setLayoutParams(new LinearLayout.LayoutParams(size.x/2, size.y/2));
-
-                error.setText(R.string.creating_preview);
-
-                builder.setView(layout);
-
-                AlertDialog dialog = builder.create();
-
-                dialog.setOwnerActivity(getActivity());
-
-                dialog.show();
-
-                Thread thread = new Thread(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        createPreview(bootAniPath);
-                    }
-                });
-                thread.start();
-
             }
         }
-    
+    }
 
     public void copy(File src, File dst) throws IOException {
         InputStream in = new FileInputStream(src);
