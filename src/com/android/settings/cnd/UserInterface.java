@@ -94,6 +94,7 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
 
     private static final int REQUEST_PICK_WALLPAPER = 201;
     private static final int REQUEST_PICK_CUSTOM_ICON = 202;
+    private static final int REQUEST_PICK_BOOT_ANIMATION = 203;
     private static final int SELECT_ACTIVITY = 4;
     private static final int SELECT_WALLPAPER = 5;
 
