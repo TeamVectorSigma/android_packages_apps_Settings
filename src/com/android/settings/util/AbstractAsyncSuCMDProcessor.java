@@ -3,7 +3,7 @@ package com.android.settings.util;
 
 import android.os.AsyncTask;
 
-import com.android.settings.util.objects.EasyPair;
+import com.android.settings.objects.EasyPair;
 import com.android.settings.util.CMDProcessor;
 import com.android.settings.util.Helpers;
 
