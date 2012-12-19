@@ -255,7 +255,7 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen,
-            final Preference preference) {
+            Preference preference) {
         if (preference == mStatusBarImeSwitcher) {
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.STATUS_BAR_IME_SWITCHER, mStatusBarImeSwitcher.isChecked() ? 1 : 0);
