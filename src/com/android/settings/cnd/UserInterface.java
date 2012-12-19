@@ -116,7 +116,8 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
     CheckBoxPreference mTabletui;
     Preference mLcdDensity;
 
-
+    private AnimationDrawable mAnimationPart1;
+    private AnimationDrawable mAnimationPart2;
     private String mPartName1;
     private String mPartName2;
     private int delay;
@@ -136,8 +137,7 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
     int newDensityValue;
 
     DensityChanger densityFragment;
-    AnimationDrawable mAnimationPart1;
-    AnimationDrawable mAnimationPart2;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
