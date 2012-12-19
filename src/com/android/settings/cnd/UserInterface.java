@@ -310,6 +310,7 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
             boolean checked = ((CheckBoxPreference) preference).isChecked();
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.STATUSBAR_SHOW_ALARM, checked ? 1 : 0);
+            return true;
         } else if (preference == mTabletui) {
             Settings.System.putBoolean(mContext.getContentResolver(),
                     Settings.System.MODE_TABLET_UI,
