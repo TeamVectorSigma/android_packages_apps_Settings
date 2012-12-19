@@ -1,10 +1,12 @@
 
 package com.android.settings.cnd;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.InputStreamReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
@@ -16,15 +18,22 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Point;
+import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.os.SystemProperties;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
@@ -35,6 +44,7 @@ import android.preference.PreferenceScreen;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.text.Spannable;
+import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -42,10 +52,15 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.R;
@@ -53,7 +68,14 @@ import com.android.settings.util.CMDProcessor;
 import com.android.settings.util.AbstractAsyncSuCMDProcessor;
 import com.android.settings.util.Helpers;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.StringBuilder;
+import java.util.Enumeration;
+import java.util.List;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 
 public class UserInterface extends SettingsPreferenceFragment implements Preference.OnPreferenceChangeListener {
 
@@ -76,7 +98,9 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
 
     private static final String WALLPAPER_NAME = "notification_wallpaper.png";
 
+    CheckBoxPreference mDisableBootAnimation;
     Preference mNotificationWallpaper;
+    Preference mCustomBootAnimation;
     Preference mWallpaperAlpha;
     Preference mCustomLabel;
     CheckBoxPreference mStatusBarImeSwitcher;
@@ -87,12 +111,20 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
     CheckBoxPreference mTabletui;
     Preference mLcdDensity;
 
+    private AnimationDrawable mAnimationPart1;
+    private AnimationDrawable mAnimationPart2;
+    private String mPartName1;
+    private String mPartName2;
+    private int delay;
+    private int height;
+    private int width;
+    private String errormsg;
+    private String bootAniPath;
+
     private Random randomGenerator = new Random();
     // previous random; so we don't repeat
     private static int mLastRandomInsultIndex = -1;
     private String[] mInsults;
-
-    private File customnavTemp;
 
     private int seekbarProgress;
     String mCustomLabelText = null;
@@ -111,6 +143,15 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
         mInsults = mContext.getResources().getStringArray(
                 R.array.disable_bootanimation_insults);
 
+        mDisableBootAnimation = (CheckBoxPreference)findPreference("disable_bootanimation");
+        mDisableBootAnimation.setChecked(!new File("/system/media/bootanimation.zip").exists());
+        if (mDisableBootAnimation.isChecked()) {
+            Resources res = mContext.getResources();
+            String[] insults = res.getStringArray(R.array.disable_bootanimation_insults);
+            int randomInt = randomGenerator.nextInt(insults.length);
+            mDisableBootAnimation.setSummary(insults[randomInt]);
+        }
+
         mLcdDensity = findPreference("lcd_density_setup");
         String currentProperty = SystemProperties.get("ro.sf.lcd_density");
         try {
@@ -122,8 +163,6 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
         mLcdDensity.setSummary(getResources().getString(R.string.current_lcd_density) + currentProperty);
 
         mCustomBootAnimation = findPreference("custom_bootanimation");
-
-        customnavTemp = new File(getActivity().getFilesDir()+"notification_wallpaper.png");
 
         mCustomLabel = findPreference(PREF_CUSTOM_CARRIER_LABEL);
         updateCustomLabelTextSummary();
@@ -171,6 +210,10 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
             ((PreferenceGroup) findPreference("misc")).removePreference(mKillAppLongpressBack);
         }
 
+        mNotificationWallpaper = findPreference(PREF_NOTIFICATION_WALLPAPER);
+
+        mWallpaperAlpha = (Preference) findPreference(PREF_NOTIFICATION_WALLPAPER_ALPHA);
+
         if (mTablet) {
             prefs.removePreference(mNotificationWallpaper);
             prefs.removePreference(mWallpaperAlpha);
@@ -185,7 +228,7 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
         Settings.System.putInt(getActivity().getContentResolver(),
                 Settings.System.KILL_APP_LONGPRESS_BACK, mKillAppLongpressBack.isChecked() ? 1 : 0);
     }
-    
+
     private void updateKillAppLongpressBackOptions() {
         mKillAppLongpressBack.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
                 Settings.System.KILL_APP_LONGPRESS_BACK, 0) != 0);
@@ -263,6 +306,21 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
                     Settings.System.MODE_TABLET_UI,
                     ((CheckBoxPreference) preference).isChecked());
             return true;
+        } else if (preference == mCustomBootAnimation) {
+            PackageManager packageManager = getActivity().getPackageManager();
+            Intent test = new Intent(Intent.ACTION_GET_CONTENT);
+            test.setType("file/*");
+            List<ResolveInfo> list = packageManager.queryIntentActivities(test, PackageManager.GET_ACTIVITIES);
+            if(list.size() > 0) {
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT, null);
+                intent.setType("file/*");
+                startActivityForResult(intent, REQUEST_PICK_BOOT_ANIMATION);
+            } else {
+                //No app installed to handle the intent - file explorer required
+                Toast.makeText(mContext, R.string.install_file_manager_error, Toast.LENGTH_SHORT).show();
+            }
+
+            return true;
         } else if (preference == mNotificationWallpaper) {
             Display display = getActivity().getWindowManager().getDefaultDisplay();
             int width = display.getWidth();
@@ -286,16 +344,10 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
             intent.putExtra("outputY", height);
             intent.putExtra("scale", true);
             intent.putExtra("scaleUpIfNeeded", true);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, getNotificationExternalUri());
             intent.putExtra("outputFormat", Bitmap.CompressFormat.PNG.toString());
-            try {
-                customnavTemp.createNewFile();
-                customnavTemp.setWritable(true, false);
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(customnavTemp));
-                intent.putExtra("return-data", false);
-                startActivityForResult(intent, REQUEST_PICK_WALLPAPER);
-            } catch (IOException e) {
-            } catch (ActivityNotFoundException e) {
-            }
+
+            startActivityForResult(intent, REQUEST_PICK_WALLPAPER);
             return true;
         } else if (preference == mWallpaperAlpha) {
             Resources res = getActivity().getResources();
@@ -343,6 +395,7 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
             })
             .create()
             .show();
+            return true;
         } else if (preference == mCustomLabel) {
             AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
 
@@ -405,14 +458,20 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
         AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
         switch (item.getItemId()) {
             case R.id.remove_wallpaper:
-                if (customnavTemp.exists()) {
-                    customnavTemp.delete();
-                }
+                File f = new File(mContext.getFilesDir(), WALLPAPER_NAME);
+                mContext.deleteFile(WALLPAPER_NAME);
                 Helpers.restartSystemUI();
                 return true;
             default:
                 return super.onContextItemSelected(item);
         }
+    }
+
+    private Uri getNotificationExternalUri() {
+        File dir = mContext.getExternalCacheDir();
+        File wallpaper = new File(dir, WALLPAPER_NAME);
+
+        return Uri.fromFile(wallpaper);
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -427,7 +486,7 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
                     return; // NOOOOO
                 }
 
-                Uri selectedImageUri = Uri.fromFile(customnavTemp);
+                Uri selectedImageUri = getNotificationExternalUri();
                 Bitmap bitmap = BitmapFactory.decodeFile(selectedImageUri.getPath());
 
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, wallpaperStream);
