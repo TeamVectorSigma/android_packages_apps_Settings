@@ -5066,6 +5066,7 @@
     <string name="disable_bootaudio_title">Disable boot sounds</string>
     <string name="custom_bootaudio_title">Custom boot sounds</string>
     <string name="custom_bootaudio_summary">Select mp3 from sdcard. Previous boot sounds will be backed up to /system/media.</string>
+
     <!-- boot animation stuff -->
     <string name="insult_jerk">Jerk!</string>
     <string name="insult_protekk">ProTekk!</string>
