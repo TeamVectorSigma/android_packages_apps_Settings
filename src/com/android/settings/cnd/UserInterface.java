@@ -674,7 +674,7 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
 
             mAnimationPart1.setOnAnimationFinishedListener(new AnimationDrawable.OnAnimationFinishedListener() {
 
-                
+                @Override
                 public void onAnimationFinished() {
                     Log.d(TAG, "First part finished");
                     view.setImageDrawable(mAnimationPart2);
