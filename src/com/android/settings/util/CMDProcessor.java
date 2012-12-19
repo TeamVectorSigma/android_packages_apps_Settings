@@ -3,12 +3,13 @@ package com.android.settings.util;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.InputStream;
-
 import android.util.Log;
+import com.android.settings.objects.EasyPair;
 
 public class CMDProcessor {
 
-    private static final String TAG = "CMD Processor";
+    private final String TAG = getClass().getSimpleName();
+    private static final boolean DEBUG = false;
     private Boolean can_su;
     public SH sh;
     public SH su;
@@ -27,6 +28,7 @@ public class CMDProcessor {
     }
 
     public class CommandResult {
+        private final String resultTag = TAG + '.' + getClass().getSimpleName();
         public final String stdout;
         public final String stderr;
         public final Integer exit_value;
@@ -40,10 +42,18 @@ public class CMDProcessor {
             exit_value = exit_value_in;
             stdout = stdout_in;
             stderr = stderr_in;
+            if (DEBUG)
+                Log.d(TAG, resultTag + "( exit_value=" + exit_value
+                    + ", stdout=" + stdout
+                    + ", stderr=" + stderr + " )");
         }
 
         public boolean success() {
             return exit_value != null && exit_value == 0;
+        }
+
+        public EasyPair<String, String> getOutput() {
+            return new EasyPair<String, String>(stdout, stderr);
         }
     }
 
@@ -93,6 +103,7 @@ public class CMDProcessor {
         }
 
         public CommandResult runWaitFor(final String s) {
+            if (DEBUG) Log.d(TAG, "runWaitFor( " + s + " )");
             final Process process = run(s);
             Integer exit_value = null;
             String stdout = null;
