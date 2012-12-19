@@ -255,7 +255,7 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen,
-            Preference preference) {
+            final Preference preference) {
         if (preference == mStatusBarImeSwitcher) {
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.STATUS_BAR_IME_SWITCHER, mStatusBarImeSwitcher.isChecked() ? 1 : 0);
@@ -674,7 +674,7 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
 
             mAnimationPart1.setOnAnimationFinishedListener(new AnimationDrawable.OnAnimationFinishedListener() {
 
-                @Override
+                
                 public void onAnimationFinished() {
                     Log.d(TAG, "First part finished");
                     view.setImageDrawable(mAnimationPart2);
