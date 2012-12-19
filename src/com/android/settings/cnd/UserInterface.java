@@ -99,6 +99,7 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
     private static final String WALLPAPER_NAME = "notification_wallpaper.png";
 
     CheckBoxPreference mDisableBootAnimation;
+    CheckBoxPreference mStatusBarNotifCount;
     Preference mNotificationWallpaper;
     Preference mCustomBootAnimation;
     Preference mWallpaperAlpha;
@@ -142,6 +143,10 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
         PreferenceScreen prefs = getPreferenceScreen();
         mInsults = mContext.getResources().getStringArray(
                 R.array.disable_bootanimation_insults);
+        mStatusBarNotifCount = (CheckBoxPreference) findPreference(PREF_STATUS_BAR_NOTIF_COUNT);
+        mStatusBarNotifCount.setChecked(Settings.System.getBoolean(mContext
+                .getContentResolver(), Settings.System.STATUS_BAR_NOTIF_COUNT,
+                false));
 
         mDisableBootAnimation = (CheckBoxPreference)findPreference("disable_bootanimation");
         mDisableBootAnimation.setChecked(!new File("/system/media/bootanimation.zip").exists());
