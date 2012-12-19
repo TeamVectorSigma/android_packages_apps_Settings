@@ -111,6 +111,8 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
     ListPreference mVolumeKeyCursorControl;
     CheckBoxPreference mKillAppLongpressBack;
     CheckBoxPreference mAlarm;
+    ImageView view;
+    TextView error;
     CheckBoxPreference mTabletui;
     Preference mLcdDensity;
 
