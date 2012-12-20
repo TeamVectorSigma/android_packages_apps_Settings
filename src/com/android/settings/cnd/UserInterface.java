@@ -166,7 +166,6 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
 
         mCustomBootAnimation = findPreference("custom_bootanimation");
 
-
         mDisableBootAudio = (CheckBoxPreference)findPreference("disable_bootaudio");
         mDisableBootAudio.setChecked(!new File("/system/media/boot_audio.mp3").exists());
         if (mDisableBootAudio.isChecked()) {
@@ -562,7 +561,9 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
                 mDisableBootAnimation.setChecked(false);
 
                         Helpers.getMount("ro");
-            } else if (requestCode == REQUEST_PICK_BOOT_AUDIO) {
+
+                        dialog.dismiss();
+} else if (requestCode == REQUEST_PICK_BOOT_AUDIO) {
                 if (data==null) {
                     //Nothing returned by user, probably pressed back button in file manager
                     return;
@@ -582,8 +583,6 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
                 mDisableBootAnimation.setChecked(false);
 
                 Helpers.getMount("ro");
-
-                        dialog.dismiss();
                     }
                 });
                 builder.setNegativeButton(com.android.internal.R.string.cancel, new DialogInterface.OnClickListener() {
