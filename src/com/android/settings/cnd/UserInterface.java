@@ -153,6 +153,10 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
         mStatusBarNotifCount.setChecked(Settings.System.getBoolean(mContext
                 .getContentResolver(), Settings.System.STATUS_BAR_NOTIF_COUNT,
                 false));
+mStatusBarNotifCount = (CheckBoxPreference) findPreference(PREF_STATUS_BAR_NOTIF_COUNT);
+        mStatusBarNotifCount.setChecked(Settings.System.getBoolean(mContext
+                .getContentResolver(), Settings.System.STATUS_BAR_NOTIF_COUNT,
+                false));
 
         mDisableBootAnimation = (CheckBoxPreference)findPreference("disable_bootanimation");
         mDisableBootAnimation.setChecked(!new File("/system/media/bootanimation.zip").exists());
