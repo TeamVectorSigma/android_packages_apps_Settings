@@ -102,7 +102,7 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
     private static final String WALLPAPER_NAME = "notification_wallpaper.png";
 
     CheckBoxPreference mDisableBootAnimation;
-    CheckBoxPreference mStatusBarNotifCount;
+
     Preference mNotificationWallpaper;
     Preference mCustomBootAnimation;
     Preference mWallpaperAlpha;
@@ -151,15 +151,6 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
         PreferenceScreen prefs = getPreferenceScreen();
         mInsults = mContext.getResources().getStringArray(
                 R.array.disable_bootanimation_insults);
-        mAllow180Rotation = (CheckBoxPreference) findPreference(PREF_180);
-        mAllow180Rotation.setChecked(Settings.System.getInt(mContext
-                .getContentResolver(), Settings.System.ACCELEROMETER_ROTATION_ANGLES, (1 | 2 | 8)) == (1 | 2 | 4 | 8));
-
-
-        mStatusBarNotifCount = (CheckBoxPreference) findPreference(PREF_STATUS_BAR_NOTIF_COUNT);
-        mStatusBarNotifCount.setChecked(Settings.System.getBoolean(mContext
-                .getContentResolver(), Settings.System.STATUS_BAR_NOTIF_COUNT,
-                false));
 
         mDisableBootAnimation = (CheckBoxPreference)findPreference("disable_bootanimation");
         mDisableBootAnimation.setChecked(!new File("/system/media/bootanimation.zip").exists());
@@ -275,13 +266,7 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.RECENT_KILL_ALL_BUTTON, checked ? 1 : 0);
             Helpers.restartSystemUI();
-            return true;
-                } else if (preference == mStatusBarNotifCount) {
-            Settings.System.putBoolean(mContext.getContentResolver(),
-                    Settings.System.STATUS_BAR_NOTIF_COUNT,
-                    ((CheckBoxPreference) preference).isChecked());
-            return true;
-        } else if (preference == mDisableBootAnimation) {
+                    } else if (preference == mDisableBootAnimation) {
             CMDProcessor term = new CMDProcessor();
             if (!term.su.runWaitFor(
                     "grep -q \"debug.sf.nobootanimation\" /system/build.prop")
@@ -313,19 +298,6 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
             };
             processor.execute(getBootAnimationCommand(mDisableBootAnimation.isChecked()));
             return true;
-        } else if (preference == mShowActionOverflow) {
-            boolean enabled = mShowActionOverflow.isChecked();
-            Settings.System.putInt(getContentResolver(), Settings.System.UI_FORCE_OVERFLOW_BUTTON,
-                    enabled ? 1 : 0);
-            // Show toast appropriately
-            if (enabled) {
-                Toast.makeText(getActivity(), R.string.show_overflow_toast_enable,
-                        Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(getActivity(), R.string.show_overflow_toast_disable,
-                        Toast.LENGTH_LONG).show();
-            }
-            return true;
         } else if (preference == mKillAppLongpressBack) {
             writeKillAppLongpressBackOptions();
         } else if (preference == mAlarm) {
@@ -351,7 +323,6 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
                 //No app installed to handle the intent - file explorer required
                 Toast.makeText(mContext, R.string.install_file_manager_error, Toast.LENGTH_SHORT).show();
             }
-
             return true;
         } else if (preference == mNotificationWallpaper) {
             Display display = getActivity().getWindowManager().getDefaultDisplay();
