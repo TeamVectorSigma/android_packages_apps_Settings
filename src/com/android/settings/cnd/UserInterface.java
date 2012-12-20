@@ -114,6 +114,7 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
     CheckBoxPreference mAlarm;
     ImageView view;
     TextView error;
+    CheckBoxPreference mShowActionOverflow;
     CheckBoxPreference mTabletui;
     Preference mLcdDensity;
 
@@ -210,6 +211,11 @@ mStatusBarNotifCount = (CheckBoxPreference) findPreference(PREF_STATUS_BAR_NOTIF
         mAlarm.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
                     Settings.System.STATUSBAR_SHOW_ALARM, 1) == 1);
 
+        mShowActionOverflow = (CheckBoxPreference) findPreference(PREF_SHOW_OVERFLOW);
+        mShowActionOverflow.setChecked((Settings.System.getInt(getActivity().
+                        getApplicationContext().getContentResolver(),
+                        Settings.System.UI_FORCE_OVERFLOW_BUTTON, 0) == 1));
+
         mTabletui = (CheckBoxPreference) findPreference(PREF_MODE_TABLET_UI);
         mTabletui.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
                     Settings.System.MODE_TABLET_UI, false));
@@ -224,10 +230,6 @@ mStatusBarNotifCount = (CheckBoxPreference) findPreference(PREF_STATUS_BAR_NOTIF
         if (hasNavBarByDefault || mTablet) {
             ((PreferenceGroup) findPreference("misc")).removePreference(mKillAppLongpressBack);
         }
-
-        mNotificationWallpaper = findPreference(PREF_NOTIFICATION_WALLPAPER);
-
-        mWallpaperAlpha = (Preference) findPreference(PREF_NOTIFICATION_WALLPAPER_ALPHA);
 
         if (mTablet) {
             prefs.removePreference(mNotificationWallpaper);

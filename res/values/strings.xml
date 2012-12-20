@@ -4155,7 +4155,8 @@
     <string name="enable_alarm_icon__summary">After disabling or enabling, you must toggle your alarms for it take affect</string>
     <string name="tablet_ui">Force Tablet UI</string>
     <string name="tablet_ui_summary">This will switch to Tablet UI (requires reboot)</string>
-
+    <string name="show_overflow_toast_enable">The menu overflow button may not be visible until apps are restarted</string>
+    <string name="show_overflow_toast_disable">The menu overflow button may not be hidden until apps are restarted</string>
     <!-- Interface | Power menu -->
     <string name="power_menu_reboot_title">Reboot menu</string>
     <string name="power_menu_profiles_title">Profile switcher</string>
