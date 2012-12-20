@@ -110,6 +110,7 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
     CheckBoxPreference mRecentKillAll;
     ListPreference mVolumeKeyCursorControl;
     CheckBoxPreference mKillAppLongpressBack;
+    CheckBoxPreference mUseAltResolver;
     CheckBoxPreference mAlarm;
     ImageView view;
     TextView error;
@@ -141,6 +142,7 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle(R.string.title_ui);
         // Load the preferences from an XML resource
         addPreferencesFromResource(R.xml.user_interface_settings);
 
