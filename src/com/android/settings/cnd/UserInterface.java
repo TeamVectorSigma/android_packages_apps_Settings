@@ -90,9 +90,9 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
     private static final String VOLUME_KEY_CURSOR_CONTROL = "volume_key_cursor_control";
     private static final String PREF_KILL_APP_LONGPRESS_BACK = "kill_app_longpress_back";
     private static final String PREF_ALARM_ENABLE = "alarm";
+    private static final String PREF_SHOW_OVERFLOW = "show_overflow";
     private static final String PREF_MODE_TABLET_UI = "mode_tabletui";
-PREF_SHOW_OVERFLOW = "show_overflow";
-    private static final String
+
     private static final int REQUEST_PICK_WALLPAPER = 201;
     private static final int REQUEST_PICK_CUSTOM_ICON = 202;
     private static final int REQUEST_PICK_BOOT_ANIMATION = 203;
