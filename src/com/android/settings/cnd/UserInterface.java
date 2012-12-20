@@ -271,7 +271,6 @@ mStatusBarNotifCount = (CheckBoxPreference) findPreference(PREF_STATUS_BAR_NOTIF
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.RECENT_KILL_ALL_BUTTON, checked ? 1 : 0);
             Helpers.restartSystemUI();
-
             return true;
         } else if (preference == mStatusBarNotifCount) {
             Settings.System.putBoolean(mContext.getContentResolver(),
@@ -309,6 +308,19 @@ mStatusBarNotifCount = (CheckBoxPreference) findPreference(PREF_STATUS_BAR_NOTIF
                 }
             };
             processor.execute(getBootAnimationCommand(mDisableBootAnimation.isChecked()));
+return true;
+        } else if (preference == mShowActionOverflow) {
+            boolean enabled = mShowActionOverflow.isChecked();
+            Settings.System.putInt(getContentResolver(), Settings.System.UI_FORCE_OVERFLOW_BUTTON,
+                    enabled ? 1 : 0);
+            // Show toast appropriately
+            if (enabled) {
+                Toast.makeText(getActivity(), R.string.show_overflow_toast_enable,
+                        Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(getActivity(), R.string.show_overflow_toast_disable,
+                        Toast.LENGTH_LONG).show();
+            }
             return true;
         } else if (preference == mKillAppLongpressBack) {
             writeKillAppLongpressBackOptions();
