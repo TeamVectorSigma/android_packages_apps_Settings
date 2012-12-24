@@ -5002,9 +5002,10 @@
     <string name="mem_info">Memory</string>
 
     <!-- About device | Mod Version-->
-    <string name="mod_version">Mod version</string>
+    <string name="mod_version">JoyRide Version</string>
     <string name="mod_version_default">Unknown</string>
-
+    <string name="build_date">Build Date</string>
+    <string name="build_date_default">2012-01-01-0000</string>
 
     <!-- || General strings || -->
     <string name="ok">OK</string>
@@ -5067,7 +5068,9 @@
     <string name="disable_bootaudio_title">Disable boot sounds</string>
     <string name="custom_bootaudio_title">Custom boot sounds</string>
     <string name="custom_bootaudio_summary">Select mp3 from sdcard. Previous boot sounds will be backed up to /system/media.</string>
-
+    <!-- USB Mass Storage -->
+    <string name="usb_mass_storage_title">Mass storage</string>
+    <string name="usb_mass_storage_summary">Enable USB mass storage</string>
     <!-- boot animation stuff -->
     <string name="insult_jerk">Jerk!</string>
     <string name="insult_protekk">ProTekk!</string>
