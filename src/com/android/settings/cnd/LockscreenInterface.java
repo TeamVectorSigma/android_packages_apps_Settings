@@ -173,7 +173,6 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
                 mBatteryStatus.setValueIndex(0);
             }
             mBatteryStatus.setSummary(mBatteryStatus.getEntry());
-            mCustomBackground.setSummary(getResources().getString(resId));
         }
 
         // Set the clock align value
