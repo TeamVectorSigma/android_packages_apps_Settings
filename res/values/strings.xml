@@ -345,6 +345,15 @@
     <!-- Bluetooth phone book permission Alert Activity checkbox text [CHAR LIMIT=none] -->
     <string name="bluetooth_pb_remember_choice">Don\'t ask again</string>
 
+    <!-- Activity label of BluetoothMasPermissionActivity, also used as Strings in the permission dialog [CHAR LIMIT=none] -->
+    <string name="bluetooth_mas_request">"Message Access request"</string>
+
+    <!-- Bluetooth MAS permission Alert Activity text [CHAR LIMIT=none] -->
+    <string name="bluetooth_mas_acceptance_dialog_text">%1$s would like to access your messages. Give access to %2$s?</string>
+
+    <!-- Bluetooth MAS permission Alert Activity checkbox text [CHAR LIMIT=none] -->
+    <string name="bluetooth_mas_remember_choice">Don\'t ask again</string>
+
     <!-- Date & time settings screen title -->
     <string name="date_and_time">Date &amp; time settings</string>
     <!-- Date/time settings.  Summary of the checkbox for choosing between 12 hour time or 24 hour time.  Sample of 12-hour time -->
@@ -539,21 +548,21 @@
     <!-- Do not translate. -->
     <string name="debug_intent_sender_label">Debug intent sender</string>
     <!-- The title of the activity to see random device info. -->
-    <string name="device_info_label">Device info</string>
+    <string name="device_info_label">Device Info</string>
     <!-- The title of the activity to see battery info. -->
-    <string name="battery_info_label">Battery info</string>
+    <string name="battery_info_label">Battery Info</string>
     <!-- The title of the activity to adjust display settings -->
     <string name="display_label">Screen</string>
     <!-- The title of the activity to see phone info -->
-    <string name="phone_info_label" product="tablet">Tablet info</string>
+    <string name="phone_info_label" product="tablet">Tablet Info</string>
     <!-- The title of the activity to see phone info -->
-    <string name="phone_info_label" product="default">Phone info</string>
+    <string name="phone_info_label" product="default">Phone Info</string>
     <!-- The title of the activity to adjust SD card settings [CHAR LIMIT=25] -->
     <string name="sd_card_settings_label" product="nosdcard">USB Storage</string>
     <!-- The title of the activity to adjust SD card settings-->
-    <string name="sd_card_settings_label" product="default">SD Card</string>
+    <string name="sd_card_settings_label" product="default">Sd Card</string>
     <!-- The title of the activity to adjust proxy settings -->
-    <string name="proxy_settings_label">Proxy settings</string>
+    <string name="proxy_settings_label">Proxy Settings</string>
 
     <!-- ======================================================================================= -->
     <!-- NEW STUFF -->
@@ -567,9 +576,9 @@
     <!-- Title of the Settings activity shown in the Launcher. [CHAR LIMIT=20] -->
     <string name="settings_label_launcher">Settings</string>
     <!-- Label for option to select a settings panel as a shortcut -->
-    <string name="settings_shortcut">Settings shortcut</string>
+    <string name="settings_shortcut">Settings Shortcut</string>
     <!-- Wireless controls settings screen, setting check box label -->
-    <string name="airplane_mode">Airplane mode</string>
+    <string name="airplane_mode">Airplane Mode</string>
     <!-- Main Settings screen settings title for things like airplane mode, tethering, NFC, VPN.  This will take you to another screen with those settings. -->
     <string name="radio_controls_title">More\u2026</string>
     <!-- Wireless Settings screen title for things like Wi-Fi, bluetooth, airplane mode. -->
@@ -590,7 +599,7 @@
     <!-- mobile network settings screen, message in dialog box that appears when you select the "Data roaming" check box -->
     <string name="roaming_warning">When you allow data roaming, you may incur significant roaming charges!</string>
     <!-- mobile network settings screen, title of dialog box that appears when you select the "Data roaming" check box -->
-    <string name="roaming_reenable_title">Allow data roaming?</string>
+    <string name="roaming_reenable_title">Allow Data Roaming?</string>
     <!-- mobile network settings screen, setting option name -->
     <string name="networks">Operator selection</string>
     <!-- mobile network settings screen, setting option summary text -->
@@ -598,41 +607,41 @@
 
     <!-- Date and time settings --><skip />
     <!-- Main Settings screen setting option name to go into the date and time settings-->
-    <string name="date_and_time_settings_title">Date &amp; time</string>
+    <string name="date_and_time_settings_title">Date &amp; Time</string>
     <!-- Title for Date & Time settings screen in SetupWizard [CHAR LIMIT=40] -->
-    <string name="date_and_time_settings_title_setup_wizard">Set date and time</string>
+    <string name="date_and_time_settings_title_setup_wizard">Set Date and Time</string>
     <!-- Main Settings screen setting option summary text for the item to go into the date and time settings. -->
-    <string name="date_and_time_settings_summary">Set date, time, time zone, &amp; formats</string>
+    <string name="date_and_time_settings_summary">Set Date, Time, Time Zone, &amp; Formats</string>
     <!-- Date & time setting screen setting check box title if the date and time should be determined automatically [CHAR LIMIT=25] -->
-    <string name="date_time_auto">Automatic date &amp; time</string>
+    <string name="date_time_auto">Automatic Date &amp; Time</string>
     <!-- Date & time setting screen setting option summary text when Automatic check box is selected
         (that is, when date and time should be determined automatically) [CHAR LIMIT=100] -->
-    <string name="date_time_auto_summaryOn">Use network-provided time</string>
+    <string name="date_time_auto_summaryOn">Use Network-Provided time</string>
     <!-- Date & time setting screen setting option summary text when Automatic check box is clear
         [CHAR LIMIT=100] -->
-    <string name="date_time_auto_summaryOff">Use network-provided time</string>
+    <string name="date_time_auto_summaryOff">Use Network-Provided Time</string>
     <!-- Date & time setting screen setting check box title if the time zone should be determined automatically [CHAR LIMIT=25] -->
-    <string name="zone_auto">Automatic time zone</string>
+    <string name="zone_auto">Automatic Time Zone</string>
     <!-- Date & time setting screen setting option summary text when Automatic time zone check box is selected (that is, when date and time should be determined automatically)
         [CHAR LIMIT=100]  -->
-    <string name="zone_auto_summaryOn">Use network-provided time zone</string>
+    <string name="zone_auto_summaryOn">Use Network-Provided Time Zone</string>
     <!-- Date & time setting screen setting option summary text when Automatic time zone check box is clear
         [CHAR LIMIT=100] -->
-    <string name="zone_auto_summaryOff">Use network-provided time zone</string>
+    <string name="zone_auto_summaryOff">Use Network-Provided Time Zone</string>
     <!-- Date & time setting screen setting check box title -->
-    <string name="date_time_24hour">Use 24-hour format</string>
+    <string name="date_time_24hour">Use 24-hour Format</string>
     <!-- Date & time setting screen setting option title -->
-    <string name="date_time_set_time">Set time</string>
+    <string name="date_time_set_time">Set Time</string>
     <!-- Date & time setting screen setting option title -->
-    <string name="date_time_set_timezone">Select time zone</string>
+    <string name="date_time_set_timezone">Select Time Zone</string>
     <!-- Date & time setting screen setting option title -->
-    <string name="date_time_set_date">Set date</string>
+    <string name="date_time_set_date">Set Date</string>
     <!-- Date & time setting screen setting option title.  This setting allows the user to choose how the date should be displayed in apps (what ordering for month and day, etc.) -->
-    <string name="date_time_date_format">Choose date format</string>
+    <string name="date_time_date_format">Choose Date Format</string>
     <!-- Menu item on Select time zone screen -->
-    <string name="zone_list_menu_sort_alphabetically">Sort alphabetically</string>
+    <string name="zone_list_menu_sort_alphabetically">Sort Alphabetically</string>
     <!-- Menu item on Select time zone screen -->
-    <string name="zone_list_menu_sort_by_timezone">Sort by time zone</string>
+    <string name="zone_list_menu_sort_by_timezone">Sort by Time Zone</string>
     <!-- Title string shown above DatePicker, letting a user select system date
          [CHAR LIMIT=20] -->
     <string name="date_picker_title">Date</string>
@@ -643,30 +652,30 @@
     <!-- Security Settings --><skip />
 
     <!-- Security settings screen when using face unlock, setting option name to start an activity that allows the user to improve accuracy by adding additional enrollment faces -->
-    <string name="biometric_weak_improve_matching_title">Improve face matching</string>
+    <string name="biometric_weak_improve_matching_title">Improve Face Matching</string>
 <!-- On the security settings screen when using face unlock.  This checkbox is used to toggle whether liveliness detection is required.  If it is checked the user must blink during unlock to prove it's not a photo  -->
     <string name="biometric_weak_liveliness_title">Liveness check</string>
     <!-- On the security settings screen when using face unlock.  The summary of the liveliness checkbox -->
     <string name="biometric_weak_liveliness_summary" msgid="7980026533493781616">Require eye blink while unlocking</string>
 
     <!-- Security settings screen, setting option name to change screen timeout -->
-    <string name="lock_after_timeout">Automatically lock</string>
+    <string name="lock_after_timeout">Automatically Lock</string>
     <!-- Security settings screen, setting option summary to change screen timeout -->
     <string name="lock_after_timeout_summary"><xliff:g id="timeout_string">%1$s</xliff:g> after sleep</string>
     <!-- Text shown next to checkbox for showing owner info on LockScreen [CHAR LIMIT=50]-->
-    <string name="show_owner_info_on_lockscreen_label">Show owner info on lock screen</string>
+    <string name="show_owner_info_on_lockscreen_label">Show Owner Info on Lockscreen</string>
     <!-- Text shown for title of owner info setting [CHAR LIMIT=20]-->
-    <string name="owner_info_settings_title">Owner info</string>
+    <string name="owner_info_settings_title">Owner Info</string>
     <!-- Text shown for summary of owner info setting [CHAR LIMIT=40]-->
     <string name="owner_info_settings_summary"></string>
     <!-- Hint text shown in owner info edit text [CHAR LIMIT=50] -->
-    <string name="owner_info_settings_edit_text_hint">Type text to display on the lock screen</string>
+    <string name="owner_info_settings_edit_text_hint">Type Text to Display on The Lockscreen</string>
     <!-- Main Settings screen setting option title for the item to take you to the location screen -->
-    <string name="location_settings_title">Location services</string>
+    <string name="location_settings_title">Location Settings</string>
     <!-- Main Settings screen setting option title for the item to take you to the security screen -->
     <string name="security_settings_title">Security</string>
     <!-- Main Settings screen setting option summary text for the item tot ake you to the security and location screen -->
-    <string name="security_settings_summary">Set My Location, screen unlock, SIM card lock, credential storage lock</string>
+    <string name="security_settings_summary">Set My Location, Screen unlock, SIM card lock, Credential Storage Lock</string>
     <!-- Main Settings screen setting option summary text for the item to take you to the CDMA security and location screen -->
     <string name="cdma_security_settings_summary">Set My Location, screen unlock, credential storage lock</string>
     <!-- In the security screen, the header title for settings related to  Passwords-->
@@ -678,7 +687,7 @@
     <!-- Title of the preferences item to control encryption -->
     <string name="crypt_keeper_encrypt_title" product="tablet">Encrypt tablet</string>
     <!-- Title of the preferences item to control encryption -->
-    <string name="crypt_keeper_encrypt_title" product="default">Encrypt phone</string>
+    <string name="crypt_keeper_encrypt_title" product="default">Encrypt Phone</string>
 
     <!-- Summary of the preferences item to control encryption, when encryption is inactive -->
     <string name="crypt_keeper_encrypt_summary" product="tablet">
@@ -711,17 +720,17 @@
     some or all of your data.</string>
 
     <!-- Button text to start encryption process -->
-    <string name="crypt_keeper_button_text" product="tablet">Encrypt tablet</string>
+    <string name="crypt_keeper_button_text" product="tablet">Encrypt Tablet</string>
     <!-- Button text to start encryption process -->
-    <string name="crypt_keeper_button_text" product="default">Encrypt phone</string>
+    <string name="crypt_keeper_button_text" product="default">Encrypt Phone</string>
 
     <!-- Warning string that will be displayed when encryption cannot be started -->
-    <string name="crypt_keeper_low_charge_text">Charge your battery and try again.</string>
+    <string name="crypt_keeper_low_charge_text">Charge Your Battery and try again.</string>
     <!-- Warning string that will be displayed when encryption cannot be started -->
-    <string name="crypt_keeper_unplugged_text">Plug in your charger and try again.</string>
+    <string name="crypt_keeper_unplugged_text">Plug in your Charger and Try Again.</string>
 
     <!-- Dialog title, shown when encryption cannot proceed because a PIN/Password is needed -->
-    <string name="crypt_keeper_dialog_need_password_title">No lock screen PIN or password</string>
+    <string name="crypt_keeper_dialog_need_password_title">No Lock screen PIN or Password</string>
     <!-- Dialog message, shown when encryption cannot proceed because a PIN/Password is needed -->
     <string name="crypt_keeper_dialog_need_password_message">You need to set a lock screen PIN or
     password before you can start encryption.</string>
@@ -753,10 +762,10 @@
     <string name="crypt_keeper_cooldown">Try again in <xliff:g id="delay" example="15">^1</xliff:g> seconds.</string>
 
     <!-- Informational text on the password entry screen prompting the user for their password -->
-    <string name="crypt_keeper_enter_password">Type your password</string>
+    <string name="crypt_keeper_enter_password">Type Your Password</string>
 
     <!-- Title of the encryption screen when encrypting the device failed -->
-    <string name="crypt_keeper_failed_title">Encryption unsuccessful</string>
+    <string name="crypt_keeper_failed_title">Encryption Unsuccessful</string>
 
     <!-- Informational text when encryption fails -->
     <string name="crypt_keeper_failed_summary" product="tablet">
@@ -778,26 +787,26 @@
     </string>
 
     <!-- Image button description to switch input method -->
-    <string name="crypt_keeper_switch_input_method">Switch input method</string>
+    <string name="crypt_keeper_switch_input_method">Switch Input Method</string>
 
     <!-- Unlock Picker Settings --><skip />
 
     <!-- Security Picker --><skip />
     <!--  Title for security picker to choose the unlock method: None/Pattern/PIN/Password [CHAR LIMIT=22] -->
-    <string name="lock_settings_picker_title">Choose screen lock</string>
+    <string name="lock_settings_picker_title">Choose Screen Lock</string>
 
     <!--  Title for security picker when choosing a facelock's backup unlock method: Pattern/PIN [CHAR LIMIT=22] -->
-    <string name="backup_lock_settings_picker_title">Choose backup lock</string>
+    <string name="backup_lock_settings_picker_title">Choose Backup Lock</string>
 
     <!--  Main Security lock settings --><skip />
     <!--  Title for PreferenceScreen to launch picker for security method when there is none [CHAR LIMIT=22] -->
-    <string name="unlock_set_unlock_launch_picker_title">Screen lock</string>
+    <string name="unlock_set_unlock_launch_picker_title">Screen Lock</string>
 
     <!--  Title for PreferenceScreen to change security method: None/Pattern/PIN/Password [CHAR LIMIT=22] -->
-    <string name="unlock_set_unlock_launch_picker_change_title">Change lock screen</string>
+    <string name="unlock_set_unlock_launch_picker_change_title">Change Lockscreen</string>
 
     <!--  Summary for PreferenceScreen to changeecurity method: None/Pattern/PIN/Password [CHAR LIMIT=45]  -->
-    <string name="unlock_set_unlock_launch_picker_change_summary">Change or disable pattern, PIN, or password security</string>
+    <string name="unlock_set_unlock_launch_picker_change_summary">Change or Disable Pattern, PIN, or Password Security</string>
 
     <!--  Summary for PreferenceScreen to changeecurity method: None/Pattern/PIN/Password [CHAR LIMIT=45]  -->
     <string name="unlock_set_unlock_launch_picker_enable_summary">Choose a method to lock the screen</string>
@@ -1243,9 +1252,9 @@
 
     <!-- Dialog for Access Points --> <skip />
 	    <!-- Label for automatically_connect -->
-    <string name="wifi_auto_connect">Automatically Connect</string>
+    <string name="wifi_auto_connect">Connect Automatically</string>
     <!-- Label to show/hide advanced options -->
-    <string name="wifi_show_advanced">Show advanced options</string>
+    <string name="wifi_show_advanced">Show Advanced Options</string>
     <!-- Title for the WPS setup dialog [CHAR LIMIT=50] -->
     <string name="wifi_wps_setup_title">Wi-Fi Protected Setup</string>
     <!-- Message in WPS dialog at start up [CHAR LIMIT=150] -->
@@ -1253,7 +1262,7 @@
     <!-- Message in WPS dialog for PBC after start up [CHAR LIMIT=150] -->
     <string name="wifi_wps_onstart_pbc">Press the Wi-Fi Protected Setup button on your router. It may be called \"WPS\" or contain this symbol:</string>
     <!-- Message in WPS dialog for PIN after start up [CHAR LIMIT=150] -->
-    <string name="wifi_wps_onstart_pin">Enter pin <xliff:g id="number">%1$s</xliff:g> on your Wi-Fi router. The setup can take upto two minutes to complete.</string>
+    <string name="wifi_wps_onstart_pin">Enter Pin<xliff:g id="number">%1$s</xliff:g> on your Wi-Fi router. The setup can take upto two minutes to complete.</string>
     <!-- Text displayed when WPS succeeds [CHAR LIMIT=150] -->
     <string name="wifi_wps_complete">WPS succeeded. Connecting to the network\u2026</string>
     <!-- Text displayed when Wi-Fi is connected through WPS [CHAR LIMIT=150] -->
@@ -1267,7 +1276,7 @@
      <!-- Text displayed when WPS fails to TKIP [CHAR LIMIT=150] -->
     <string name="wifi_wps_failed_tkip">The wireless router security setting (TKIP) is not supported</string>
      <!-- Text displayed when WPS fails due to authentication issues [CHAR LIMIT=150] -->
-    <string name="wifi_wps_failed_auth">Authentication failure. Please try again.</string>
+    <string name="wifi_wps_failed_auth">Authentication Failure. Please Try Again.</string>
      <!-- Text displayed when WPS fails due to another session [CHAR LIMIT=150] -->
     <string name="wifi_wps_failed_overlap">Another WPS session was detected. Please try again in a few minutes.</string>
     <!-- Label for the SSID of the network -->
@@ -1281,7 +1290,7 @@
     <!-- Label for the link speed of the connection -->
     <string name="wifi_speed">Link speed</string>
     <!-- Label for the IP address of the connection -->
-    <string name="wifi_ip_address">IP address</string>
+    <string name="wifi_ip_address">IP Address</string>
     <!-- Hint text for the IP address -->
     <string name="wifi_ip_address_hint" translatable="false">192.168.1.128</string>
     <!-- Label for the EAP method of the network -->
@@ -1289,19 +1298,19 @@
     <!-- Label for the phase2 -->
     <string name="please_select_phase2">Phase 2 authentication</string>
     <!-- Label for the EAP CA certificate of the network -->
-    <string name="wifi_eap_ca_cert">CA certificate</string>
+    <string name="wifi_eap_ca_cert">CA Certificate</string>
     <!-- Label for the EAP user certificate of the network -->
-    <string name="wifi_eap_user_cert">User certificate</string>
+    <string name="wifi_eap_user_cert">User Certificate</string>
     <!-- Label for the EAP identity of the network -->
     <string name="wifi_eap_identity">Identity</string>
     <!-- Label for the EAP anonymous identity of the network -->
-    <string name="wifi_eap_anonymous">Anonymous identity</string>
+    <string name="wifi_eap_anonymous">Anonymous Identity</string>
     <!-- Label for the password of the secured network -->
     <string name="wifi_password">Password</string>
     <!-- Label for the check box to show password -->
-    <string name="wifi_show_password">Show password</string>
+    <string name="wifi_show_password">Show Password</string>
     <!-- Label for the spinner to show ip settings [CHAR LIMIT=25] -->
-    <string name="wifi_ip_settings">IP settings</string>
+    <string name="wifi_ip_settings">IP Settings</string>
     <!-- Hint for unchanged fields -->
     <string name="wifi_unchanged">(unchanged)</string>
     <!-- Hint for unspecified fields -->
@@ -1311,10 +1320,10 @@
     <!-- Status for networks disabled for unknown reason -->
     <string name="wifi_disabled_generic">Disabled</string>
     <!-- Status for networked disabled from a DNS or DHCP failure -->
-    <string name="wifi_disabled_network_failure">Avoided poor Internet connection</string>
+    <string name="wifi_disabled_network_failure">Avoided Poor Internet Connection</string>
     <!-- Status for networks disabled from authentication failure (wrong password
          or certificate). -->
-    <string name="wifi_disabled_password_failure">Authentication problem</string>
+    <string name="wifi_disabled_password_failure">Authentication Problem</string>
     <!-- Summary for the remembered network but currently not in range. -->
     <string name="wifi_not_in_range">Not in range</string>
     <!-- Substring of status line when Wi-Fi Protected Setup (WPS) is available and
@@ -1790,9 +1799,9 @@
     <!-- About phone screen, title of the item to go into the Phone status screen -->
     <string name="device_status">Status</string>
     <!-- About tablet screen, summary of the item that takes you to tablet status screen -->
-    <string name="device_status_summary" product="tablet">Status of the battery, network, and other information</string>
+    <string name="device_status_summary" product="tablet">Status of the Battery, Network, and Other Information</string>
     <!-- About phone screen, summary of the item to go into the phone status screen -->
-    <string name="device_status_summary" product="default">Phone number, signal, etc.</string>
+    <string name="device_status_summary" product="default">Phone Number, Signal, etc.</string>
     <!-- Main settings screen item's title to go into the storage settings screen [CHAR LIMIT=25] -->
     <string name="storage_settings" >Storage</string>
     <!-- Storage settings screen title -->
@@ -4120,7 +4129,7 @@
     <string name="themes_settings_title">Themes</string>
     <string name="launcher_settings_title">Launcher</string>
     <string name="advanced_settings_title">Advanced</string>
-    <string name="about_cna_settings_title">About CNA-JoyRide</string>
+    <string name="about_cna_settings_title">About CodeName(A)</string>
 
     <!-- Interface | Titles -->
     <string name="general_ui_settings_title">@string/sound_category_sound_title</string>
@@ -5046,25 +5055,25 @@
     <string name="custom_density_title">5. Change density to whatever you like!</string>
     <string name="custom_density_summary">If you ever have compatibility issues with the market, be sure to return here and repeat the process.</string>
     <string name="custom_density_summary_invalid">"INVALID DENSITY!"</string>
-    <string name="custom_density">custom</string>
-    <string name="set_custom_density_title">Set custom density</string>
+    <string name="custom_density">Custom</string>
+    <string name="set_custom_density_title">Set Custom Density</string>
     <string name="set_custom_density_set">Set</string>
     <string name="custom_density_dialog_title">"WARNING!"</string>
     <string name="custom_density_dialog_summary">"Changing your LCD density can cause unexpected app behavior. If you encounter market app incompatibility please return here and restart the process from step 1."</string>
     <string name="custom_density_dialog_button_got">Got it!</string>
-    <string name="custom_density_dialog_button_reboot">Reboot now</string>
+    <string name="custom_density_dialog_button_reboot">Reboot Now?</string>
     
     <!-- **** EXTRA ADDITIONS FROM AOKP **** -->
     <string name="bootani_cat">Boot Animation</string>
-    <string name="disable_bootanimation_title">Disable boot animation</string>
-    <string name="custom_bootanimation_title">Custom boot animation</string>
-    <string name="custom_bootanimation_summary">Select bootanimation zip from sdcard. Previous bootanimation will be backed up to /system/media.</string>
+    <string name="disable_bootanimation_title">Use Generic Boot Animation</string>
+    <string name="custom_bootanimation_title">Choose Boot Animation</string>
+    <string name="custom_bootanimation_summary">Select bootanimation zip from sdcard. Becareful to not choose the wrong File Type because there may be Damaging Effects. Previous bootanimation will be backed up to /system/media.</string>
     <string name="install_file_manager_error">No application found to pick the zip file. Please install a file manager.</string>
-    <string name="bootanimation_preview">Bootanimation preview</string>
+    <string name="bootanimation_preview">Boot Animation Set</string>
     <string name="apply">Apply</string>
-    <string name="creating_preview">Creating preview...</string>
+    <string name="creating_preview">Applying Animation...</string>
     <string name="error_reading_zip_file">Error reading zip file</string>
-    <string name="error_creating_preview">Error creating preview</string>
+    <string name="error_creating_preview">Animation is Set</string>
     <string name="disable_bootaudio_title">Disable boot sounds</string>
     <string name="custom_bootaudio_title">Custom boot sounds</string>
     <string name="custom_bootaudio_summary">Select mp3 from sdcard. Previous boot sounds will be backed up to /system/media.</string>
@@ -5072,9 +5081,9 @@
     <string name="usb_mass_storage_title">Mass storage</string>
     <string name="usb_mass_storage_summary">Enable USB mass storage</string>
     <!-- boot animation stuff -->
-    <string name="insult_jerk">Jerk!</string>
-    <string name="insult_protekk">ProTekk!</string>
-    <string name="insult_unicorns">Concede pink unicorns are for little girls</string>
+    <string name="insult_jerk">Decepticon?</string>
+    <string name="insult_protekk">OG Android Lover!</string>
+    <string name="insult_unicorns">Transformers Are Still Lengendary!!!</string>
     <string name="navbar_widgets_instructions">Swipe to view - Click to choose</string>
     <string name="navbar_widgets_reset">Reset widgets</string>
     <string name="navbar_widget_summary">Widget %1$s of %2$s</string>

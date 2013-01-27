@@ -57,5 +57,8 @@
             android:key="notification_pulse"
             android:title="@string/notification_pulse_title"
             android:persistent="false" />
-
+<PreferenceScreen
+        android:key="battery_light"
+        android:title="@string/battery_light_title"
+       android:fragment="com.android.settings.notificationlight.BatteryLightSettings" />
 </PreferenceScreen>
