@@ -4120,7 +4120,7 @@
     <string name="themes_settings_title">Themes</string>
     <string name="launcher_settings_title">Launcher</string>
     <string name="advanced_settings_title">Advanced</string>
-    <string name="about_cna_settings_title">About CodeName(A)</string>
+    <string name="about_cna_settings_title">About CNA-JoyRide</string>
 
     <!-- Interface | Titles -->
     <string name="general_ui_settings_title">@string/sound_category_sound_title</string>
